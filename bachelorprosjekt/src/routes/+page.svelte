@@ -1,4 +1,4 @@
-<script lang="ts">
+<!--<script lang="ts">
   import { initializeApp } from "firebase/app";
   import {
     getAuth,
@@ -57,3 +57,9 @@
   />
   <button on:click={login}>Login</button>
 {/if}
+-->
+<script>
+  import Authenticate from "../components/Authenticate.svelte";
+</script>
+
+<Authenticate />
