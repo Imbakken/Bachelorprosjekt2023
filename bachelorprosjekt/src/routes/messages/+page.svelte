@@ -1,85 +1,164 @@
 <script>
   import { db } from "../../lib/firebase/firebase";
   import { authHandlers, authStore } from "../../store/store";
-  import { getDoc, doc, setDoc } from "firebase/firestore";
-  import MessageItem from "../../components/MessageItem.svelte";
+  import {
+    onSnapshot,
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc,
+  } from "firebase/firestore";
+  import Toastify from "toastify-js";
+  import { onDestroy } from "svelte";
 
-  let messageList = [];
-  let currMessage = "";
-  let error = false;
+  let message = {
+    title: "",
+    description: "",
+  };
 
-  authStore.subscribe((curr) => {
-    messageList = curr.data.messages;
-  });
+  let messages = [];
+  let inputElement;
+  let editStatus = false;
+  let currentId = "";
 
-  function addMessage() {
-    error = false;
-    if (!currMessage) {
-      error = true;
+  const unsub = onSnapshot(
+    collection(db, "messages"),
+    (querySnapshot) => {
+      messages = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+    },
+    (err) => {
+      console.error(err);
     }
-    messageList = [...messageList, currMessage];
-    currMessage = "";
-  }
+  );
 
-  function editMessage(item) {
-    let newMessageList = [...messageList].filter((val, i) => {
-      console.log(i, item, i !== item);
-      return i != item;
-    });
-    currMessage = messageList[item];
-    messageList = newMessageList;
-  }
-
-  function removeMessage(item) {
-    let newMessageList = [...messageList].filter((val, i) => {
-      console.log(i, item, i !== item);
-      return i != item;
-    });
-    messageList = newMessageList;
-  }
-
-  async function saveMessages() {
+  const addMessage = async () => {
     try {
-      const userRef = doc(db, "users", $authStore.user.uid);
-      await setDoc(
-        userRef,
-        {
-          messages: messageList,
-        },
-        { merge: true }
-      );
-    } catch (err) {
-      console.log("There was an error saving your information");
+      await addDoc(collection(db, "messages"), {
+        ...message,
+        createdAt: Date.now(),
+      });
+      Toastify({
+        text: "New message created",
+      }).showToast();
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
+
+  const editMessage = (currentMessage) => {
+    currentId = currentMessage.id;
+    message.title = currentMessage.title;
+    message.description = currentMessage.description;
+    editStatus = true;
+  };
+
+  const removeMessage = async (id) => {
+    try {
+      await deleteDoc(doc(db, "messages", id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateMessage = async () => {
+    try {
+      await updateDoc(doc(db, "messages", currentId), message);
+      Toastify({
+        text: "Message updated",
+      }).showToast();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!message.title) return;
+    if (!editStatus) {
+      addMessage();
+    } else {
+      updateMessage();
+      editStatus = false;
+      currentId = "";
+    }
+    message = { title: "", description: "" };
+    inputElement.focus();
+  };
+
+  const onCancel = () => {
+    editStatus = false;
+    currentId = "";
+    message = { title: "", description: "" };
+  };
+
+  onDestroy(unsub);
 </script>
 
-{#if !$authStore.loading}
+{#if $authStore}
   <div class="mainContainer">
-    <div class="headerContainer">
-      <h1>message List</h1>
-      <div class="headerBtns">
-        <button on:click={saveMessages}>
-          <i class="fa-regular fa-floppy-disk" />
-          <p>Save</p></button
-        >
-        <button on:click={authHandlers.logout}>
-          <i class="fa-solid fa-right-from-bracket" />
-          <p>Logout</p></button
-        >
+    <div class="mainContainerRow">
+      <div class="xxx">
+        <form on:submit|preventDefault={handleSubmit} class="mainContainerForm">
+          <div class="titleContainer">
+            <label for="title" class="titleLabel">Tittel</label>
+            <input
+              type="text"
+              bind:value={message.title}
+              bind:this={inputElement}
+              placeholder="Tittel"
+              class="form-control"
+            />
+          </div>
+
+          <div class="descriptionContainer">
+            <label for="description" class="descriptionLabel">Beskjed</label>
+            <textarea
+              bind:value={message.description}
+              rows="3"
+              placeholder="Skriv din beskjed her"
+              class="form-control"
+            />
+            <button on:click={authHandlers.logout}>
+              <i class="fa-solid fa-right-from-bracket" />
+              <p>Logout</p></button
+            >
+          </div>
+
+          <div class="buttonContainer">
+            <button class="saveButton" disabled={!message.title}>
+              <i class="fa-regular fa-floppy-disk" />
+              <span class="ms-2">
+                {#if !editStatus}Lagre{:else}Oppdater{/if}
+              </span>
+            </button>
+            {#if editStatus}
+              <button on:click={onCancel} class="cancelButton">Avbryt</button>
+            {/if}
+          </div>
+        </form>
+
+        {#each messages as message}
+          <div class="card card-body mt-2">
+            <div class="d-flex justify-content-between">
+              <h3>{message.title}</h3>
+              <p>{message.description}</p>
+              <button on:click={editMessage(message)}>
+                <i class="fa-regular fa-pen-to-square" />
+                <p>Endre</p>
+              </button>
+            </div>
+            <div>
+              <button on:click={removeMessage(message.id)}>
+                <i class="fa-regular fa-trash-can" />
+                <p>Slett</p>
+              </button>
+            </div>
+          </div>
+        {/each}
       </div>
-    </div>
-    <main>
-      {#if messageList.length === 0}
-        <p>You have nothing to do!</p>
-      {/if}
-      {#each messageList as message, item}
-        <MessageItem {message} {item} {removeMessage} {editMessage} />
-      {/each}
-    </main>
-    <div class={"enterMessage " + (error ? "errorBorder" : "")}>
-      <input bind:value={currMessage} type="text" placeholder="Enter message" />
-      <button on:click={addMessage}>ADD</button>
     </div>
   </div>
 {/if}
