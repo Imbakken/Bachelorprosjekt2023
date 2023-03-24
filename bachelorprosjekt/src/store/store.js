@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
 import { writable } from "svelte/store";
 import { auth } from "../lib/firebase/firebase";
 
+
 export const authStore = writable({
     user: null,
     loading: true,
@@ -19,3 +20,7 @@ export const authHandlers = {
         await signOut(auth)
     }
 }
+
+
+export const user = writable({});
+export const isLoggedIn = writable(false);

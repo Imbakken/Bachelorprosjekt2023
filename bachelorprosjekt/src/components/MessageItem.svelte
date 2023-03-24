@@ -1,25 +1,26 @@
 <script>
-  export let index;
-  export let todo;
-  export let editTodo;
-  export let removeTodo;
+  export let item;
+  export let message;
+  export let editMessage;
+  export let removeMessage;
 </script>
 
-<div class="todo">
+<div class="message">
   <p>
-    {index + 1}. {todo}
+    {item}
+    {message}
   </p>
   <div class="actions">
     <i
       on:click={() => {
-        editTodo(index);
+        editMessage(item);
       }}
       on:keydown={() => {}}
       class="fa-regular fa-pen-to-square"
     />
     <i
       on:click={() => {
-        removeTodo(index);
+        removeMessage(item);
       }}
       on:keydown={() => {}}
       class="fa-regular fa-trash-can"
@@ -28,7 +29,7 @@
 </div>
 
 <style>
-  .todo {
+  .message {
     border-left: 1px solid #db7b65;
     padding: 8px 14px;
     display: flex;

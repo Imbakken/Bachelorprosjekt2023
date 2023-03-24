@@ -116,7 +116,7 @@
   form input {
     border: none;
     background: transparent;
-    color: FEFAEF;
+    color: #fefaef;
     padding: 14px;
   }
   form input:focus {
@@ -128,7 +128,7 @@
   }
   form button {
     background: #db7b65;
-    color: FEFAEF;
+    color: #fefaef;
     border: none;
     padding: 14px 0;
     border-radius: 5px;
@@ -191,7 +191,7 @@
     transform: translateY(-50%);
     width: 100vw;
     height: 1.5px;
-    background: FEFAEF;
+    background: #fefaef;
   }
   .options > p::after {
     right: 100%;
