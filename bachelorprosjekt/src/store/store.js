@@ -20,7 +20,3 @@ export const authHandlers = {
         await signOut(auth)
     }
 }
-
-
-export const user = writable({});
-export const isLoggedIn = writable(false);
