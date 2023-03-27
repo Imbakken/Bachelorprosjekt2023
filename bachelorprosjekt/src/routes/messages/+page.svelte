@@ -1,5 +1,5 @@
 <script>
-  import { db } from "../../lib/firebase/firebase";
+  import { db, auth } from "../../lib/firebase/firebase";
   import { authHandlers, authStore } from "../../store/store";
   import {
     onSnapshot,
@@ -27,7 +27,7 @@
 
   const unsub = onSnapshot(
     collection(db, "messages"),
-    orderBy("date", "asc"),
+    orderBy("date", "desc"),
     (querySnapshot) => {
       messages = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -40,10 +40,12 @@
   );
 
   const addMessage = async () => {
+    const currentUser = auth.currentUser;
     try {
       await addDoc(collection(db, "messages"), {
         ...message,
         createdAt: Date.now(),
+        createdBy: currentUser.uid,
       });
       Toastify({
         text: "New message created",
@@ -52,6 +54,11 @@
       console.error(error);
     }
   };
+
+  function canEdit(createdBy) {
+    const currentUser = auth.currentUser;
+    return currentUser && createdBy === currentUser.uid;
+  }
 
   const editMessage = (currentMessage) => {
     currentId = currentMessage.id;
@@ -120,16 +127,18 @@
                   <p>Skrevet av {message.author}</p>
                 </div>
               </div>
-              <div class="messageCardButton">
-                <button on:click={editMessage(message)}>
-                  <i class="fa-regular fa-pen-to-square" />
-                  <p>Endre</p>
-                </button>
-                <button on:click={removeMessage(message.id)}>
-                  <i class="fa-regular fa-trash-can" />
-                  <p>Slett</p>
-                </button>
-              </div>
+              {#if canEdit(message.createdBy)}
+                <div class="messageCardButton">
+                  <button on:click={editMessage(message)}>
+                    <i class="fa-regular fa-pen-to-square" />
+                    <p>Endre</p>
+                  </button>
+                  <button on:click={removeMessage(message.id)}>
+                    <i class="fa-regular fa-trash-can" />
+                    <p>Slett</p>
+                  </button>
+                </div>
+              {/if}
             </div>
           </div>
         {/each}
@@ -186,6 +195,7 @@
                 {#if !editStatus}Lagre{:else}Oppdater{/if}
               </span>
             </button>
+
             {#if editStatus}
               <button on:click={onCancel} class="cancelButton">Avbryt</button>
             {/if}

@@ -1,4 +1,4 @@
-<script>
+<!--<script>
   import { InlineCalendar } from "svelte-calendar";
 
   const theme = {
@@ -9,4 +9,4 @@
   };
 </script>
 
-<InlineCalendar {theme} />
+<InlineCalendar {theme} /> -->
