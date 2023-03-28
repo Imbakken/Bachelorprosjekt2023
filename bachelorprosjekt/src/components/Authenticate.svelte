@@ -4,22 +4,20 @@
   let password = "";
   let confirmPass = "";
   let error = false;
-  let register = false;
+  let noUser = false;
   let authenticating = false;
   async function handleAuthenticate() {
     if (authenticating) {
       return;
     }
-    if (!email || !password || (register && !confirmPass)) {
+    if (!email || !password || (noUser && !confirmPass)) {
       error = true;
       return;
     }
     authenticating = true;
     try {
-      if (!register) {
+      if (!noUser) {
         await authHandlers.login(email, password);
-      } else {
-        await authHandlers.signup(email, password);
       }
     } catch (err) {
       console.log("There was an auth error", err);
@@ -27,57 +25,36 @@
       authenticating = false;
     }
   }
-  function handleRegister() {
-    register = !register;
-  }
 </script>
 
 <div class="authContainer">
+  <div class="logoContainer">
+    <h1>VIVO</h1>
+    <p>En enklere studenthverdag</p>
+  </div>
   <form>
-    <h1>{register ? "Register" : "Login"}</h1>
     {#if error}
       <p class="error">The information you have entered is not correct</p>
     {/if}
     <label>
-      <p class={email ? " above" : " center"}>Email</p>
       <input bind:value={email} type="email" placeholder="Email" />
     </label>
     <label>
-      <p class={password ? " above" : " center"}>Password</p>
       <input bind:value={password} type="password" placeholder="Password" />
     </label>
-    {#if register}
-      <label>
-        <p class={confirmPass ? " above" : " center"}>Confirm Password</p>
-        <input
-          bind:value={confirmPass}
-          type="password"
-          placeholder="Confirm Password"
-        />
-      </label>
-    {/if}
 
     <button on:click={handleAuthenticate} type="button" class="submitBtn">
       {#if authenticating}
         <i class="fa-solid fa-spinner loadingSpinner" />
       {:else}
-        Submit
+        Logg inn
       {/if}
     </button>
   </form>
   <div class="options">
-    <p>Or</p>
-    {#if register}
-      <div>
-        <p>Already have an account?</p>
-        <p on:click={handleRegister} on:keydown={() => {}}>Login</p>
-      </div>
-    {:else}
-      <div>
-        <p>Don't have an account?</p>
-        <p on:click={handleRegister} on:keydown={() => {}}>Register</p>
-      </div>
-    {/if}
+    <p>
+      <a href="/nouser">Har du ikke bruker?</a>
+    </p>
   </div>
 </div>
 
@@ -89,6 +66,9 @@
     justify-content: center;
     flex: 1;
     padding: 24px;
+  }
+  .logoContainer {
+    padding: 30px;
   }
   form {
     display: flex;
@@ -104,19 +84,19 @@
   form input {
     width: 100%;
   }
-  h1 {
+
+  h2 {
     text-align: center;
     font-size: 3rem;
   }
   form label {
     position: relative;
-    border: 1px solid #db7b65;
-    border-radius: 5px;
+    border-bottom: 1px solid #db7b65;
   }
   form input {
     border: none;
     background: transparent;
-    color: #fefaef;
+    color: #db7b65;
     padding: 14px;
   }
   form input:focus {
@@ -127,41 +107,16 @@
     border-color: #db7b65;
   }
   form button {
-    background: #db7b65;
-    color: #fefaef;
-    border: none;
+    background: #fbcec3;
+    color: #db7b65;
+    border: 1px solid #db7b65;
     padding: 14px 0;
-    border-radius: 5px;
+    margin: 24px 0;
+    border-radius: 40px;
     cursor: pointer;
     font-size: 1rem;
     display: grid;
     place-items: center;
-  }
-  form button:hover {
-    background: #db7b65;
-  }
-  .above,
-  .center {
-    position: absolute;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: FEFAEF;
-    border-radius: 4px;
-    padding: 0 6px;
-    font-size: 0.8rem;
-  }
-  .above {
-    top: 0;
-    left: 24px;
-    background: #db7b65;
-    border: 1px solid #db7b65;
-    font-size: 0.7rem;
-  }
-  .center {
-    top: 50%;
-    left: 6px;
-    border: 1px solid transparent;
-    opacity: 0;
   }
   .error {
     color: #db7b65;
@@ -174,40 +129,15 @@
     font-size: 0.9rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
   }
-  .options > p {
-    position: relative;
-    text-align: center;
-    width: fit-content;
-    margin: 0 auto;
-    padding: 0 8px;
-  }
-  .options > p::after,
-  .options > p::before {
-    position: absolute;
-    content: "";
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100vw;
-    height: 1.5px;
-    background: #fefaef;
-  }
-  .options > p::after {
-    right: 100%;
-  }
-  .options > p::before {
-    left: 100%;
-  }
-  .options div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-  }
-  .options div p:last-of-type {
+  .options a {
     color: #db7b65;
-    cursor: pointer;
+    text-decoration: none;
+  }
+  .options a:hover {
+    font-weight: bold;
   }
   .loadingSpinner {
     animation: spin 1s linear infinite;
@@ -219,5 +149,16 @@
     to {
       transform: rotate(360deg);
     }
+  }
+  .logoContainer h1 {
+    font-family: "Gloock", serif;
+    color: #255f63;
+    text-align: center;
+    font-size: 3rem;
+  }
+  .logoContainer p {
+    font-family: "Comfortaa", cursive;
+    text-align: center;
+    font-size: 1rem;
   }
 </style>

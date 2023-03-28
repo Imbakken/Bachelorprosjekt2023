@@ -7,7 +7,7 @@
 
   onMount(() => {
     console.log("Mounting");
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    const unsub = auth.onAuthStateChanged(async (user) => {
       const currentPath = window.location.pathname;
 
       if (!user && !nonAuthRoutes.includes(currentPath)) {
@@ -50,7 +50,7 @@
         };
       });
     });
-    return unsubscribe;
+    return unsub;
   });
 </script>
 
@@ -61,7 +61,7 @@
 <style>
   .mainContainer {
     min-height: 100vh;
-    background: #fbc9be;
+    background: #fefaef;
     color: #db7b65;
     position: relative;
     display: flex;

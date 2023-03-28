@@ -10,9 +10,6 @@ export const authStore = writable({
 })
 
 export const authHandlers = {
-    signup: async (email, pass) => {
-        await createUserWithEmailAndPassword(auth, email, pass)
-    },
     login: async (email, pass) => {
         await signInWithEmailAndPassword(auth, email, pass)
     },

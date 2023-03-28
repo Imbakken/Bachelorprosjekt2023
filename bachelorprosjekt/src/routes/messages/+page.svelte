@@ -4,11 +4,11 @@
   import {
     onSnapshot,
     collection,
+    orderBy,
     addDoc,
     deleteDoc,
     doc,
     updateDoc,
-    orderBy,
   } from "firebase/firestore";
   import Toastify from "toastify-js";
   import { onDestroy } from "svelte";
@@ -27,7 +27,7 @@
 
   const unsub = onSnapshot(
     collection(db, "messages"),
-    orderBy("date", "desc"),
+    orderBy("date", "asc"),
     (querySnapshot) => {
       messages = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
