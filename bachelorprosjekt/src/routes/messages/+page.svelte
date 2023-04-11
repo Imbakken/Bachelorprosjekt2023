@@ -2,16 +2,17 @@
   import { db, auth } from "../../lib/firebase/firebase";
   import { authHandlers, authStore } from "../../store/store";
   import {
-    onSnapshot,
     collection,
     orderBy,
     addDoc,
     deleteDoc,
     doc,
     updateDoc,
+    query,
+    getDocs,
   } from "firebase/firestore";
   import Toastify from "toastify-js";
-  import { onDestroy } from "svelte";
+  import { onMount } from "svelte";
 
   let message = {
     title: "",
@@ -25,19 +26,22 @@
   let editStatus = false;
   let currentId = "";
 
-  const unsub = onSnapshot(
-    collection(db, "messages"),
-    orderBy("date", "asc"),
-    (querySnapshot) => {
-      messages = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-    },
+  onMount(async () => {
+    // Query the 'posts' collection and order by the 'date' field and limit to 2
+    const q = query(collection(db, "messages"), orderBy("date", "asc"));
+
+    // Execute the query and retrieve the data
+    const querySnapshot = await getDocs(q);
+
+    // Map the data to an array and store it in the 'messages' variable
+    messages = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
     (err) => {
       console.error(err);
-    }
-  );
+    };
+  });
 
   const addMessage = async () => {
     const currentUser = auth.currentUser;
@@ -106,8 +110,6 @@
     currentId = "";
     message = { title: "", description: "", date: null, author: "" };
   };
-
-  onDestroy(unsub);
 </script>
 
 <!-- Checks if the user is logged in -->
@@ -207,6 +209,12 @@
 {/if}
 
 <style>
+  h2 {
+    padding: 30px 0 30px 0;
+  }
+  h1 {
+    padding-bottom: 30px;
+  }
   .mainContainer {
     min-height: 100vh;
     padding-top: 50px;
@@ -218,7 +226,6 @@
     background-size: cover;
     position: relative;
   }
-
   .mainContainerRectangle {
     background-color: #fefaef;
     border-radius: 30px 30px 0 0;
@@ -259,6 +266,9 @@
   .messageCard p {
     color: #000000;
   }
+  .messageCardParagraph {
+    font-size: 0.8em;
+  }
   .messageCardButton {
     display: flex;
     flex-direction: column;
@@ -267,17 +277,12 @@
     margin-top: 10px;
     padding: 10px;
   }
-  h2 {
-    padding: 30px 0 30px 0;
-  }
-  h1 {
-    padding-bottom: 30px;
-  }
   .messageCardItem {
     padding: 10px;
     display: flex;
     justify-content: space-between;
   }
+
   .mainContainer button {
     background: #db7b65;
     border: none;
@@ -294,11 +299,5 @@
   }
   .saveButton {
     color: #000000;
-  }
-  .messageCardParagraph {
-    font-size: 0.6em;
-  }
-  .messageCardText {
-    width: 75%;
   }
 </style>

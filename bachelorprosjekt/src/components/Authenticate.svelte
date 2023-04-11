@@ -34,7 +34,9 @@
   </div>
   <form>
     {#if error}
-      <p class="error">The information you have entered is not correct</p>
+      <p class="error">
+        Informasjonen du har skrevet inn stemmer ikke, vennligst prøv igjen.
+      </p>
     {/if}
     <label>
       <input bind:value={email} type="email" placeholder="Email" />
@@ -84,11 +86,6 @@
   form input {
     width: 100%;
   }
-
-  h2 {
-    text-align: center;
-    font-size: 3rem;
-  }
   form label {
     position: relative;
     border-bottom: 1px solid #db7b65;
@@ -114,29 +111,30 @@
     margin: 24px 0;
     border-radius: 40px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.2em;
     display: grid;
     place-items: center;
+    font-family: "Poppins", sans-serif;
   }
   .error {
     color: #db7b65;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     text-align: center;
   }
   .options {
     padding: 14px 0;
     overflow: hidden;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
   }
-  .options a {
+  .options p a {
     color: #db7b65;
     text-decoration: none;
   }
-  .options a:hover {
+  .options p a:hover {
     font-weight: bold;
   }
   .loadingSpinner {
@@ -159,6 +157,6 @@
   .logoContainer p {
     font-family: "Comfortaa", cursive;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1em;
   }
 </style>

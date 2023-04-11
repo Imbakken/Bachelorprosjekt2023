@@ -3,6 +3,7 @@
   import { auth, db } from "../lib/firebase/firebase";
   import { getDoc, doc, setDoc } from "firebase/firestore";
   import { authStore } from "../store/store";
+  export const prerender = true;
   const nonAuthRoutes = ["/", "product"];
 
   onMount(() => {
@@ -33,6 +34,7 @@
         const userRef = doc(db, "users", user.uid);
         dataToSetToStore = {
           email: user.email,
+          name: user.name,
         };
         await setDoc(userRef, dataToSetToStore, { merge: true });
       } else {
