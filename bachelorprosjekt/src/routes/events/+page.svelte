@@ -42,30 +42,15 @@
   let inputElement;
   let editStatus = false;
   let currentId = "";
+  let selectedEvent = null;
 
-  onMount(
-    async () => {
-      const today = new Date(); // get today's date
-      const q = query(
-        collection(db, "events"),
-        where("date", ">=", Timestamp.fromDate(today)),
-        orderBy("date", "asc")
-      );
-      const querySnapshot = await getDocs(q);
-
-      events = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-    },
-    (err) => {
-      console.error(err);
-    }
-  );
-
-  /*
   onMount(async () => {
-    const q = query(collection(db, "events"), orderBy("date", "asc"));
+    const today = new Date(); // get today's date
+    const q = query(
+      collection(db, "events"),
+      where("date", ">=", Timestamp.fromDate(today)),
+      orderBy("date", "asc")
+    );
     const querySnapshot = await getDocs(q);
 
     events = querySnapshot.docs.map((doc) => ({
@@ -75,7 +60,7 @@
     (err) => {
       console.error(err);
     };
-  }); */
+  });
 
   const addEvent = async () => {
     const currentUser = auth.currentUser;
@@ -163,6 +148,10 @@
       organizer: "",
     };
   };
+
+  const showEventDetails = (currentEvent) => {
+    selectedEvent = currentEvent;
+  };
 </script>
 
 <!-- Checks if the user is logged in -->
@@ -193,9 +182,22 @@
                   </button>
                 </div>
               {/if}
+              <button on:click={() => showEventDetails(event)}>Detaljer</button>
             </div>
           </div>
         {/each}
+
+        {#if selectedEvent !== null}
+          <div>
+            <h3>{selectedEvent.title}</h3>
+            <p>{selectedEvent.info}</p>
+            <p>Date and Time: {selectedEvent.date.toDate().toLocaleString()}</p>
+            <p>Duration: {selectedEvent.duration} minutes</p>
+            <p>Place: {selectedEvent.place}</p>
+            <p>Organizer: {selectedEvent.organizer}</p>
+            <button on:click={() => (selectedEvent = null)}>Close</button>
+          </div>
+        {/if}
 
         <form on:submit|preventDefault={handleSubmit} class="mainContainerForm">
           <h2>Legg til arrangement</h2>
