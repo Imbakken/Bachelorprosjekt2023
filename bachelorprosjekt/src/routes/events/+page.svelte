@@ -191,10 +191,14 @@
           <div>
             <h3>{selectedEvent.title}</h3>
             <p>{selectedEvent.info}</p>
-            <p>Date and Time: {selectedEvent.date.toDate().toLocaleString()}</p>
-            <p>Duration: {selectedEvent.duration} minutes</p>
-            <p>Place: {selectedEvent.place}</p>
-            <p>Organizer: {selectedEvent.organizer}</p>
+            <p>
+              Dato og klokkeslett: {selectedEvent.date
+                .toDate()
+                .toLocaleString()}
+            </p>
+            <p>Varighet: {selectedEvent.duration} timer</p>
+            <p>Sted: {selectedEvent.place}</p>
+            <p>Arrangør: {selectedEvent.organizer}</p>
             <button on:click={() => (selectedEvent = null)}>Close</button>
           </div>
         {/if}

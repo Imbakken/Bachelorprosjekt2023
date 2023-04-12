@@ -10,51 +10,65 @@
     getDoc,
     getFirestore,
     doc,
+    where,
+    Timestamp,
   } from "firebase/firestore";
   import { onMount, onDestroy } from "svelte";
   import { getAuth } from "firebase/auth";
 
   let messages = [];
+  let events = [];
   let name = "";
   let unsubscribe = null;
 
-  onMount(() => {
-    const auth = getAuth();
-
-    unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const db = getFirestore();
-        const userDoc = doc(db, "users", user.uid);
-        const userSnapshot = await getDoc(userDoc);
-
-        if (userSnapshot.exists()) {
-          name = userSnapshot.data().name;
-        }
-      } else {
-        name = "";
-      }
-    });
-  });
-
   onMount(async () => {
-    // Query the 'posts' collection and order by the 'date' field and limit to 2
-    const q = query(
-      collection(db, "messages"),
-      orderBy("date", "asc"),
-      limit(2)
-    );
+    try {
+      const auth = getAuth();
 
-    // Execute the query and retrieve the data
-    const querySnapshot = await getDocs(q);
+      unsubscribe = auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const db = getFirestore();
+          const userDoc = doc(db, "users", user.uid);
+          const userSnapshot = await getDoc(userDoc);
 
-    // Map the data to an array and store it in the 'messages' variable
-    messages = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    (err) => {
-      console.error(err);
-    };
+          if (userSnapshot.exists()) {
+            name = userSnapshot.data().name;
+          }
+        } else {
+          name = "";
+        }
+      });
+
+      const today = new Date();
+      const messagesQuery = query(
+        collection(db, "messages"),
+        orderBy("date", "asc"),
+        limit(2)
+      );
+
+      const messagesSnapshot = await getDocs(messagesQuery);
+
+      messages = messagesSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      const eventsQuery = query(
+        collection(db, "events"),
+        where("date", ">=", Timestamp.fromDate(today)),
+        orderBy("date", "asc"),
+        limit(2)
+      );
+
+      const eventsSnapshot = await getDocs(eventsQuery);
+
+      events = eventsSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (error) {
+      console.error(error);
+    }
   });
 
   onDestroy(() => {
@@ -74,12 +88,12 @@
           <div class="messageCard">
             <div class="messageCardItem">
               <div class="messageCardText">
-                <h3>{message.title}</h3>
-                <p>{message.description}</p>
                 <div class="messageCardParagraph">
                   <p>{message.date}</p>
                   <p>Skrevet av {message.author}</p>
                 </div>
+                <h3>{message.title}</h3>
+                <p>{message.description}</p>
               </div>
             </div>
           </div>
@@ -88,11 +102,27 @@
       <div class="mainContainerLink">
         <a href="/messages">Flere beskjeder</a>
       </div>
+      <div class="mainContainerContent">
+        {#each events as event}
+          <div class="messageCard">
+            <div class="messageCardItem">
+              <div class="messageCardText">
+                <div class="messageCardParagraph">
+                  <p>{event.date.toDate().toLocaleString()}</p>
+                  <p>Skrevet av {event.organizer}</p>
+                </div>
+                <h3>{event.title}</h3>
+                <p>{event.info}</p>
+              </div>
+            </div>
+          </div>
+        {/each}
+      </div>
+      <div class="mainContainerLink">
+        <a href="/events">Flere arrangementer</a>
+      </div>
       <div class="buttonContainer">
-        <button on:click={authHandlers.logout}>
-          <i class="fa-solid fa-right-from-bracket" />
-          <p>Logout</p></button
-        >
+        <button on:click={authHandlers.logout}>Logg ut</button>
       </div>
     </div>
   </div>
@@ -146,6 +176,8 @@
   }
   .messageCardParagraph {
     font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
   }
   .mainContainerLink {
     display: flex;
@@ -160,9 +192,6 @@
   }
 
   .mainContainer button {
-    background: #db7b65;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
   }
   .buttonContainer {
@@ -170,7 +199,14 @@
     justify-content: center;
   }
   .buttonContainer button {
-    margin: 10px;
-    padding: 20px;
+    background: #fbcec3;
+    color: #db7b65;
+    border: 1px solid #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2em;
+    padding: 14px 0;
+    margin: 24px 0;
+    border-radius: 40px;
+    width: 50%;
   }
 </style>
