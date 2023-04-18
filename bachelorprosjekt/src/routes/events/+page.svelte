@@ -1,16 +1,3 @@
-<!--<script>
-  import { InlineCalendar } from "svelte-calendar";
-
-  const theme = {
-    calendar: {
-      width: "600px",
-      shadow: "0px 0px 5px rgba(0,0,0,0.25)",
-    },
-  };
-</script>
-
-<InlineCalendar {theme} /> -->
-
 <script>
   import { db, auth } from "../../lib/firebase/firebase";
   import { authHandlers, authStore } from "../../store/store";
@@ -28,6 +15,7 @@
   } from "firebase/firestore";
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
+  import BackButton from "../../components/buttons/BackButton.svelte";
 
   let event = {
     title: "",
@@ -164,25 +152,27 @@
           <div class="messageCard">
             <div class="messageCardItem">
               <div class="messageCardText">
-                <p>{event.title}</p>
                 <div class="messageCardParagraph">
                   <p>{event.date.toDate().toLocaleString()}</p>
-                  <p>Skrevet av {event.organizer}</p>
+                  <p>Arrangert av {event.organizer}</p>
                 </div>
               </div>
-              {#if canEdit(event.createdBy)}
-                <div class="messageCardButton">
+              <h3>{event.title}</h3>
+              <p class="placeContainer">{event.place}</p>
+              <p>{event.info}</p>
+              <div class="messageCardButtons">
+                {#if canEdit(event.createdBy)}
                   <button on:click={editEvent(event)}>
-                    <i class="fa-regular fa-pen-to-square" />
                     <p>Endre</p>
                   </button>
                   <button on:click={removeEvent(event.id)}>
-                    <i class="fa-regular fa-trash-can" />
                     <p>Slett</p>
                   </button>
-                </div>
-              {/if}
-              <button on:click={() => showEventDetails(event)}>Detaljer</button>
+                {/if}
+                <button on:click={() => showEventDetails(event)}>
+                  <p>Detaljer</p></button
+                >
+              </div>
             </div>
           </div>
         {/each}
@@ -260,22 +250,18 @@
               class="form-control"
             />
           </div>
+
           <div class="buttonContainer">
-            <button on:click={authHandlers.logout}>
-              <i class="fa-solid fa-right-from-bracket" />
-              <p>Logout</p></button
-            >
             <button class="saveButton" disabled={!event.title}>
-              <i class="fa-regular fa-floppy-disk" />
               <span class="ms-2">
                 {#if !editStatus}Lagre{:else}Oppdater{/if}
               </span>
             </button>
-
             {#if editStatus}
               <button on:click={onCancel} class="cancelButton">Avbryt</button>
             {/if}
           </div>
+          <BackButton />
         </form>
       </div>
     </div>
@@ -288,6 +274,9 @@
   }
   h1 {
     padding-bottom: 30px;
+  }
+  .placeContainer {
+    font-size: 0.7em;
   }
   .mainContainer {
     min-height: 100vh;
@@ -342,36 +331,46 @@
   }
   .messageCardParagraph {
     font-size: 0.8em;
-  }
-  .messageCardButton {
-    display: flex;
-    flex-direction: column;
-  }
-  .messageCardButton button {
-    margin-top: 10px;
-    padding: 10px;
-  }
-  .messageCardItem {
-    padding: 10px;
     display: flex;
     justify-content: space-between;
   }
 
+  .messageCardItem {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .mainContainer button {
-    background: #db7b65;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+  }
+  .messageCardButtons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .messageCardButtons button {
+    background: #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
+    width: 100%;
   }
   .buttonContainer {
     display: flex;
     justify-content: center;
   }
   .buttonContainer button {
-    margin: 10px;
-    padding: 20px;
-  }
-  .saveButton {
-    color: #000000;
+    background: #fbc9be;
+    color: #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2em;
+    padding: 14px 0;
+    margin: 24px 5px;
+    border-radius: 15px;
+    width: 50%;
   }
 </style>

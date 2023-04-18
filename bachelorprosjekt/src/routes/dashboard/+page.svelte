@@ -16,6 +16,16 @@
   import { onMount, onDestroy } from "svelte";
   import { getAuth } from "firebase/auth";
 
+  import CleaningIcon from "../../components/icons/CleaningIcon.svelte";
+  import CommonAreaIcon from "../../components/icons/CommonAreaIcon.svelte";
+  import InternetIcon from "../../components/icons/InternetIcon.svelte";
+  import LaundryIcon from "../../components/icons/LaundryIcon.svelte";
+  import PhoneIcon from "../../components/icons/PhoneIcon.svelte";
+  import RulesIcon from "../../components/icons/RulesIcon.svelte";
+  import WasteIcon from "../../components/icons/WasteIcon.svelte";
+
+  import BackButton from "../../components/buttons/BackButton.svelte";
+
   let messages = [];
   let events = [];
   let name = "";
@@ -109,17 +119,76 @@
               <div class="messageCardText">
                 <div class="messageCardParagraph">
                   <p>{event.date.toDate().toLocaleString()}</p>
-                  <p>Skrevet av {event.organizer}</p>
+                  <p>Arrangert av {event.organizer}</p>
                 </div>
-                <h3>{event.title}</h3>
-                <p>{event.info}</p>
               </div>
+              <h3>{event.title}</h3>
+              <p class="placeContainer">{event.place}</p>
+              <p>{event.info}</p>
             </div>
           </div>
         {/each}
       </div>
       <div class="mainContainerLink">
         <a href="/events">Flere arrangementer</a>
+      </div>
+      <div class="scrollMenu">
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/laundry")}
+        >
+          <span>Vaskeri</span>
+          <span class="icon"><LaundryIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/cleaning")}
+        >
+          <span>Renhold</span>
+          <span class="icon"><CleaningIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/waste")}
+        >
+          <span>Avfall og kildesortering</span>
+          <span class="icon"><WasteIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/commonarea")}
+        >
+          <span>Fellesareale</span>
+          <span class="icon"><CommonAreaIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/rules")}
+        >
+          <span>Regler og rutiner</span>
+          <span class="icon"><RulesIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/internet")}
+        >
+          <span>Internett</span>
+          <span class="icon"><InternetIcon /></span>
+        </button>
+        <button
+          class="scrollMenuItem"
+          on:click|preventDefault={() =>
+            (window.location.href = "/information/phone")}
+        >
+          <span>Viktige telefonnumre</span>
+          <span class="icon"><PhoneIcon /></span>
+        </button>
       </div>
       <div class="buttonContainer">
         <button on:click={authHandlers.logout}>Logg ut</button>
@@ -153,6 +222,9 @@
   h2 {
     color: #000;
   }
+  .placeContainer {
+    font-size: 0.7em;
+  }
   .mainContainerContent {
     margin: 0 auto;
     display: flex;
@@ -170,9 +242,9 @@
     color: #000000;
   }
   .messageCardItem {
-    padding: 10px;
+    padding: 5px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
   }
   .messageCardParagraph {
     font-size: 0.8em;
@@ -199,14 +271,44 @@
     justify-content: center;
   }
   .buttonContainer button {
-    background: #fbcec3;
+    background: #fbc9be;
     color: #db7b65;
-    border: 1px solid #db7b65;
+    border: none;
     font-family: "Poppins", sans-serif;
     font-size: 1.2em;
     padding: 14px 0;
     margin: 24px 0;
-    border-radius: 40px;
+    border-radius: 15px;
     width: 50%;
+  }
+  .scrollMenu {
+    padding: 14px 0;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0px 10px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+  .scrollMenuItem {
+    background: #fbc9be;
+    color: #db7b65;
+    text-decoration: none;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 0.8em;
+    font-family: "Poppins", sans-serif;
+    height: 150px;
+    width: 100px;
+    border-radius: 15px;
+    border: none;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: grid;
+    grid-template-rows: 30% 60%;
+    gap: 10px 0px;
+    align-content: stretch;
+    justify-items: center;
+    align-items: center;
   }
 </style>
