@@ -47,7 +47,6 @@
 <style>
   .mainContainerParagraph p {
     margin-top: 10px;
-    color: #000;
   }
   .smallContainer {
     display: flex;

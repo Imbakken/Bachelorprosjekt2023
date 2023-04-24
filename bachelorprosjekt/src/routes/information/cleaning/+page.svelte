@@ -60,7 +60,6 @@
   .mainContainerParagraph p,
   ul {
     margin-top: 10px;
-    color: #000;
   }
   .mainContainerParagraph h1,
   h2 {

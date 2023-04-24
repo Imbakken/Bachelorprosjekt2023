@@ -13,8 +13,10 @@
     where,
     Timestamp,
   } from "firebase/firestore";
+
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
+
   import BackButton from "../../components/buttons/BackButton.svelte";
 
   let event = {
@@ -32,6 +34,7 @@
   let currentId = "";
   let selectedEvent = null;
 
+  // Get events from Firestore and store them in the events array
   onMount(async () => {
     const today = new Date(); // get today's date
     const q = query(
@@ -50,6 +53,7 @@
     };
   });
 
+  // Add the event object to Firestore
   const addEvent = async () => {
     const currentUser = auth.currentUser;
     try {
@@ -61,17 +65,20 @@
       Toastify({
         text: "New event created",
       }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Check if the current user can edit the event based on their uid
   function canEdit(createdBy) {
     const currentUser = auth.currentUser;
     Event;
     return currentUser && createdBy === currentUser.uid;
   }
 
+  // Populate the event object with the data of the selected event and enable edit mode
   const editEvent = (currentEvent) => {
     currentId = currentEvent.id;
     event.title = currentEvent.title;
@@ -81,27 +88,39 @@
     event.place = currentEvent.place;
     event.organizer = currentEvent.organizer;
     editStatus = true;
+
+    // Scroll to the form
+    const form = document.getElementById("mainForm");
+    form.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Remove the event with the given id from Firestore
   const removeEvent = async (id) => {
     try {
       await deleteDoc(doc(db, "events", id));
+      Toastify({
+        text: "Event deleted",
+      }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Update the event with the currentId in Firestore with the data from the event object
   const updateEvent = async () => {
     try {
       await updateDoc(doc(db, "events", currentId), event);
       Toastify({
         text: "Event updated",
       }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Handle submit
   const handleSubmit = () => {
     if (!event.title) return;
     event.date = Timestamp.fromDate(new Date(event.date));
@@ -124,6 +143,7 @@
     inputElement.focus();
   };
 
+  // Cancel
   const onCancel = () => {
     editStatus = false;
     currentId = "";
@@ -137,9 +157,15 @@
     };
   };
 
+  // Shows the event details
   const showEventDetails = (currentEvent) => {
     selectedEvent = currentEvent;
   };
+
+  function scrollToDetails() {
+    const detailsSection = document.getElementById("details");
+    detailsSection.scrollIntoView({ behavior: "smooth" });
+  }
 </script>
 
 <!-- Checks if the user is logged in -->
@@ -172,7 +198,7 @@
                 <button
                   on:click={() => {
                     showEventDetails(event);
-                    document.getElementById("details").scrollIntoView();
+                    scrollToDetails();
                   }}
                 >
                   <p>Detaljer</p>
@@ -198,7 +224,11 @@
           </div>
         {/if}
 
-        <form on:submit|preventDefault={handleSubmit} class="mainContainerForm">
+        <form
+          on:submit|preventDefault={handleSubmit}
+          id="mainForm"
+          class="mainContainerForm"
+        >
           <h2>Legg til arrangement</h2>
           <div class="titleContainer">
             <label for="title" class="titleLabel">Navn</label>

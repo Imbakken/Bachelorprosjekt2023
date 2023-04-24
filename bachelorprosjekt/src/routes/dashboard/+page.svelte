@@ -1,4 +1,5 @@
 <script>
+  // Import necessary modules from Firebase and Svelte
   import { db } from "../../lib/firebase/firebase";
   import { authHandlers, authStore } from "../../store/store";
   import {
@@ -16,6 +17,7 @@
   import { onMount, onDestroy } from "svelte";
   import { getAuth } from "firebase/auth";
 
+  // Import icons used in the component
   import CleaningIcon from "../../components/icons/CleaningIcon.svelte";
   import CommonAreaIcon from "../../components/icons/CommonAreaIcon.svelte";
   import InternetIcon from "../../components/icons/InternetIcon.svelte";
@@ -24,29 +26,37 @@
   import RulesIcon from "../../components/icons/RulesIcon.svelte";
   import WasteIcon from "../../components/icons/WasteIcon.svelte";
 
-  let messages = [];
-  let events = [];
-  let name = "";
-  let unsubscribe = null;
+  // Define variables used in the component
+  let messages = []; // Array to store messages
+  let events = []; // Array to store events
+  let name = ""; // Name of the authenticated user
+  let unsubscribe = null; // Function to unsubscribe from Firebase events
 
+  // Run this code when the component is mounted
   onMount(async () => {
     try {
+      // Get the authenticated user
       const auth = getAuth();
 
+      // Subscribe to changes in the authenticated user
       unsubscribe = auth.onAuthStateChanged(async (user) => {
         if (user) {
+          // Get the user document from Firestore
           const db = getFirestore();
           const userDoc = doc(db, "users", user.uid);
           const userSnapshot = await getDoc(userDoc);
 
           if (userSnapshot.exists()) {
+            // If the user document exists, get the user's name
             name = userSnapshot.data().name;
           }
         } else {
+          // If the user is not authenticated, set name to an empty string
           name = "";
         }
       });
 
+      // Get messages that were posted today or later, sorted by date
       const today = new Date();
 
       const messagesQuery = query(
@@ -56,6 +66,7 @@
         limit(2)
       );
 
+      // Get the messages and add them to the messages array
       const messagesSnapshot = await getDocs(messagesQuery);
 
       messages = messagesSnapshot.docs.map((doc) => ({
@@ -63,6 +74,7 @@
         ...doc.data(),
       }));
 
+      // Get events that are happening today or later, sorted by date
       const eventsQuery = query(
         collection(db, "events"),
         where("date", ">=", Timestamp.fromDate(today)),
@@ -70,6 +82,7 @@
         limit(2)
       );
 
+      // Get the events and add them to the events array
       const eventsSnapshot = await getDocs(eventsQuery);
 
       events = eventsSnapshot.docs.map((doc) => ({
@@ -81,7 +94,9 @@
     }
   });
 
+  // Run this code when the component is destroyed
   onDestroy(() => {
+    // Unsubscribe from Firebase events
     if (unsubscribe) {
       unsubscribe();
     }
@@ -223,14 +238,14 @@
     bottom: 0;
     overflow: scroll;
   }
-  .placeContainer {
-    font-size: 0.8em;
-  }
   .mainContainerContent {
     margin: 5px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .placeContainer {
+    font-size: 0.8em;
   }
   .messageCard {
     background: #fbc9be;
@@ -239,7 +254,6 @@
     margin: 10px;
     padding: 10px;
   }
-
   .messageCardItem {
     padding: 5px;
     display: flex;

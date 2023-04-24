@@ -1,23 +1,25 @@
 <script>
   import BackButton from "../../components/buttons/BackButton.svelte";
+  import { authStore } from "../../store/store";
 </script>
 
-<div class="mainContainer">
-  <div class="mainContainerRectangle">
-    <div class="mainContainerParagraph">
-      <slot />
-      <div class="buttonContainer">
-        <BackButton />
+{#if $authStore}
+  <div class="mainContainer">
+    <div class="mainContainerRectangle">
+      <div class="mainContainerParagraph">
+        <slot />
+        <div class="buttonContainer">
+          <BackButton />
+        </div>
       </div>
     </div>
   </div>
-</div>
+{/if}
 
 <style>
   .mainContainer {
     min-height: 100vh;
     background: #fefaef;
-    color: #db7b65;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -39,5 +41,8 @@
     position: absolute;
     bottom: 0;
     overflow: scroll;
+  }
+  .buttonContainer {
+    margin: 15px;
   }
 </style>

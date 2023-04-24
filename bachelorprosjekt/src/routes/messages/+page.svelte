@@ -30,6 +30,7 @@
   let editStatus = false;
   let currentId = "";
 
+  // Get events from Firestore and store them in the events array
   onMount(async () => {
     const today = new Date(); // get today's date
     const q = query(
@@ -48,6 +49,7 @@
     };
   });
 
+  // Add the message object to Firestore
   const addMessage = async () => {
     const currentUser = auth.currentUser;
     try {
@@ -59,16 +61,19 @@
       Toastify({
         text: "New message created",
       }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Check if the current user can edit the message based on their uid
   function canEdit(createdBy) {
     const currentUser = auth.currentUser;
     return currentUser && createdBy === currentUser.uid;
   }
 
+  // Populate the message object with the data of the selected message and enable edit mode
   const editMessage = (currentMessage) => {
     currentId = currentMessage.id;
     message.title = currentMessage.title;
@@ -76,27 +81,39 @@
     message.date = currentMessage.date;
     message.author = currentMessage.author;
     editStatus = true;
+
+    // Scroll to the form
+    const form = document.getElementById("mainForm");
+    form.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Remove the message with the given id from Firestore
   const removeMessage = async (id) => {
     try {
       await deleteDoc(doc(db, "messages", id));
+      Toastify({
+        text: "Message deleted",
+      }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Update the event with the currentId in Firestore with the data from the event object
   const updateMessage = async () => {
     try {
       await updateDoc(doc(db, "messages", currentId), message);
       Toastify({
         text: "Message updated",
       }).showToast();
+      location.reload(); // Refresh the page
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Handle submit
   const handleSubmit = () => {
     if (!message.title) return;
     message.date = Timestamp.fromDate(new Date(message.date));
@@ -116,6 +133,7 @@
     inputElement.focus();
   };
 
+  // Cancel
   const onCancel = () => {
     editStatus = false;
     currentId = "";
@@ -159,7 +177,11 @@
           </div>
         {/each}
 
-        <form on:submit|preventDefault={handleSubmit} class="mainContainerForm">
+        <form
+          on:submit|preventDefault={handleSubmit}
+          id="mainForm"
+          class="mainContainerForm"
+        >
           <h2>Legg til en ny beskjed</h2>
           <div class="titleContainer">
             <label for="title" class="titleLabel">Tittel</label>
