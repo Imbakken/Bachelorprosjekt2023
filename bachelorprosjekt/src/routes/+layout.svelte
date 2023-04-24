@@ -64,7 +64,6 @@
   .mainContainer {
     min-height: 100vh;
     background: #fefaef;
-    color: #db7b65;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -1,7 +1,3 @@
-<script>
-  import BackButton from "../../../components/buttons/BackButton.svelte";
-</script>
-
 <div class="mainContainer">
   <div class="mainContainerRectangle">
     <div class="mainContainerParagraph">
@@ -43,9 +39,6 @@
           <p>20 kr</p>
           <p>20 kr</p>
         </div>
-      </div>
-      <div class="buttonContainer">
-        <BackButton />
       </div>
     </div>
   </div>

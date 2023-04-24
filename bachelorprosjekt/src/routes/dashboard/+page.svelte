@@ -24,8 +24,6 @@
   import RulesIcon from "../../components/icons/RulesIcon.svelte";
   import WasteIcon from "../../components/icons/WasteIcon.svelte";
 
-  import BackButton from "../../components/buttons/BackButton.svelte";
-
   let messages = [];
   let events = [];
   let name = "";
@@ -50,8 +48,10 @@
       });
 
       const today = new Date();
+
       const messagesQuery = query(
         collection(db, "messages"),
+        where("date", ">=", Timestamp.fromDate(today)),
         orderBy("date", "asc"),
         limit(2)
       );
@@ -99,7 +99,7 @@
             <div class="messageCardItem">
               <div class="messageCardText">
                 <div class="messageCardParagraph">
-                  <p>{message.date}</p>
+                  <p>{message.date.toDate().toLocaleString()}</p>
                   <p>Skrevet av {message.author}</p>
                 </div>
                 <h3>{message.title}</h3>
@@ -112,6 +112,9 @@
       <div class="mainContainerLink">
         <a href="/messages">Flere beskjeder</a>
       </div>
+
+      <h2>Dette skjer de kommende dagene</h2>
+
       <div class="mainContainerContent">
         {#each events as event}
           <div class="messageCard">
@@ -132,6 +135,7 @@
       <div class="mainContainerLink">
         <a href="/events">Flere arrangementer</a>
       </div>
+      <h2>Nyttig informasjon</h2>
       <div class="scrollMenu">
         <button
           class="scrollMenuItem"
@@ -219,14 +223,11 @@
     bottom: 0;
     overflow: scroll;
   }
-  h2 {
-    color: #000;
-  }
   .placeContainer {
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
   .mainContainerContent {
-    margin: 0 auto;
+    margin: 5px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -238,26 +239,24 @@
     margin: 10px;
     padding: 10px;
   }
-  .messageCard p {
-    color: #000000;
-  }
+
   .messageCardItem {
     padding: 5px;
     display: flex;
     flex-direction: column;
   }
   .messageCardParagraph {
-    font-size: 0.8em;
     display: flex;
     justify-content: space-between;
   }
   .mainContainerLink {
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 10px;
   }
   .mainContainerLink a {
     text-decoration: none;
-    color: #db7b65;
+    color: #695356;
   }
   .mainContainerLink a:hover {
     font-weight: bold;
@@ -272,7 +271,7 @@
   }
   .buttonContainer button {
     background: #fbc9be;
-    color: #db7b65;
+    color: #695356;
     border: none;
     font-family: "Poppins", sans-serif;
     font-size: 1.2em;
@@ -291,12 +290,10 @@
   }
   .scrollMenuItem {
     background: #fbc9be;
-    color: #db7b65;
     text-decoration: none;
     white-space: normal;
     word-wrap: break-word;
     text-align: center;
-    font-size: 0.8em;
     font-family: "Poppins", sans-serif;
     height: 150px;
     width: 100px;

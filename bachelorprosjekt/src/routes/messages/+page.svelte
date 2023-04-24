@@ -10,6 +10,8 @@
     updateDoc,
     query,
     getDocs,
+    where,
+    Timestamp,
   } from "firebase/firestore";
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
@@ -17,7 +19,7 @@
   let message = {
     title: "",
     description: "",
-    date: null,
+    date: Timestamp.fromDate(new Date()),
     author: "",
   };
 
@@ -27,13 +29,14 @@
   let currentId = "";
 
   onMount(async () => {
-    // Query the 'posts' collection and order by the 'date' field and limit to 2
-    const q = query(collection(db, "messages"), orderBy("date", "asc"));
-
-    // Execute the query and retrieve the data
+    const today = new Date(); // get today's date
+    const q = query(
+      collection(db, "messages"),
+      where("date", ">=", Timestamp.fromDate(today)),
+      orderBy("date", "asc")
+    );
     const querySnapshot = await getDocs(q);
 
-    // Map the data to an array and store it in the 'messages' variable
     messages = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
@@ -48,7 +51,7 @@
     try {
       await addDoc(collection(db, "messages"), {
         ...message,
-        createdAt: Date.now(),
+        createdAt: Timestamp.now(),
         createdBy: currentUser.uid,
       });
       Toastify({
@@ -94,6 +97,7 @@
 
   const handleSubmit = () => {
     if (!message.title) return;
+    message.date = Timestamp.fromDate(new Date(message.date));
     if (!editStatus) {
       addMessage();
     } else {
@@ -101,14 +105,24 @@
       editStatus = false;
       currentId = "";
     }
-    message = { title: "", description: "", date: null, author: "" };
+    message = {
+      title: "",
+      description: "",
+      date: Timestamp.fromDate(new Date()),
+      author: "",
+    };
     inputElement.focus();
   };
 
   const onCancel = () => {
     editStatus = false;
     currentId = "";
-    message = { title: "", description: "", date: null, author: "" };
+    message = {
+      title: "",
+      description: "",
+      date: Timestamp.fromDate(new Date()),
+      author: "",
+    };
   };
 </script>
 
@@ -125,22 +139,20 @@
                 <h3>{message.title}</h3>
                 <p>{message.description}</p>
                 <div class="messageCardParagraph">
-                  <p>{message.date}</p>
+                  <p>{message.date.toDate().toLocaleString()}</p>
                   <p>Skrevet av {message.author}</p>
                 </div>
               </div>
-              {#if canEdit(message.createdBy)}
-                <div class="messageCardButton">
+              <div class="messageCardButtons">
+                {#if canEdit(message.createdBy)}
                   <button on:click={editMessage(message)}>
-                    <i class="fa-regular fa-pen-to-square" />
                     <p>Endre</p>
                   </button>
                   <button on:click={removeMessage(message.id)}>
-                    <i class="fa-regular fa-trash-can" />
                     <p>Slett</p>
                   </button>
-                </div>
-              {/if}
+                {/if}
+              </div>
             </div>
           </div>
         {/each}
@@ -168,11 +180,11 @@
             />
           </div>
           <div class="date">
-            <label for="date" class="dateLabel">Dato</label>
+            <label for="date" class="dateLabel">Dato og klokkeslett</label>
             <input
-              type="date"
+              type="datetime-local"
               bind:value={message.date}
-              placeholder="Dato"
+              placeholder="Dato og klokkeslett"
               class="form-control"
             />
           </div>
@@ -187,12 +199,7 @@
           </div>
 
           <div class="buttonContainer">
-            <button on:click={authHandlers.logout}>
-              <i class="fa-solid fa-right-from-bracket" />
-              <p>Logout</p></button
-            >
             <button class="saveButton" disabled={!message.title}>
-              <i class="fa-regular fa-floppy-disk" />
               <span class="ms-2">
                 {#if !editStatus}Lagre{:else}Oppdater{/if}
               </span>
@@ -263,19 +270,22 @@
     margin: 10px;
     padding: 10px;
   }
-  .messageCard p {
-    color: #000000;
-  }
   .messageCardParagraph {
     font-size: 0.8em;
   }
-  .messageCardButton {
-    display: flex;
-    flex-direction: column;
+  .messageCardButtons button {
+    background: #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
+    width: 100%;
   }
-  .messageCardButton button {
-    margin-top: 10px;
-    padding: 10px;
+  .messageCardButtons {
+    display: flex;
+    justify-content: space-between;
   }
   .messageCardItem {
     padding: 10px;
@@ -284,9 +294,7 @@
   }
 
   .mainContainer button {
-    background: #db7b65;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
   }
   .buttonContainer {
@@ -297,7 +305,19 @@
     margin: 10px;
     padding: 20px;
   }
-  .saveButton {
-    color: #000000;
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .buttonContainer button {
+    background: #fbc9be;
+    color: #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2em;
+    padding: 14px 0;
+    margin: 24px 5px;
+    border-radius: 15px;
+    width: 50%;
   }
 </style>

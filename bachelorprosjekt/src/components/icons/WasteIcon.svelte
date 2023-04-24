@@ -3,4 +3,4 @@
   import wasteBasket from "@iconify/icons-maki/waste-basket";
 </script>
 
-<Icon icon={wasteBasket} color="#db7b65" width="75%" />
+<Icon icon={wasteBasket} color="#695356" width="75%" />

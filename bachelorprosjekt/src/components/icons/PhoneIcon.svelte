@@ -3,4 +3,4 @@
   import emergencyPhone from "@iconify/icons-maki/emergency-phone";
 </script>
 
-<Icon icon={emergencyPhone} color="#db7b65" width="75%" />
+<Icon icon={emergencyPhone} color="#695356" width="75%" />

@@ -1,7 +1,14 @@
+<script>
+  import BackButton from "../../components/buttons/BackButton.svelte";
+</script>
+
 <div class="mainContainer">
   <div class="mainContainerRectangle">
     <div class="mainContainerParagraph">
       <slot />
+      <div class="buttonContainer">
+        <BackButton />
+      </div>
     </div>
   </div>
 </div>
@@ -32,8 +39,5 @@
     position: absolute;
     bottom: 0;
     overflow: scroll;
-  }
-  .mainContainerParagraph {
-    font-size: 0.9em;
   }
 </style>

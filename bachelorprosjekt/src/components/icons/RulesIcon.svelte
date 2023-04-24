@@ -3,4 +3,4 @@
   import officeBuildingCogOutline from "@iconify/icons-mdi/office-building-cog-outline";
 </script>
 
-<Icon icon={officeBuildingCogOutline} color="#db7b65" width="75%" />
+<Icon icon={officeBuildingCogOutline} color="#695356" width="75%" />

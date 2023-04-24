@@ -176,7 +176,6 @@
             </div>
           </div>
         {/each}
-
         {#if selectedEvent !== null}
           <div>
             <h3>{selectedEvent.title}</h3>
@@ -269,9 +268,6 @@
 {/if}
 
 <style>
-  h2 {
-    padding: 30px 0 30px 0;
-  }
   h1 {
     padding-bottom: 30px;
   }
@@ -325,9 +321,6 @@
     width: 100%;
     margin: 10px;
     padding: 10px;
-  }
-  .messageCard p {
-    color: #000000;
   }
   .messageCardParagraph {
     font-size: 0.8em;

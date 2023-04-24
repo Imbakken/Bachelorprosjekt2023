@@ -3,4 +3,4 @@
   import localLaundryServiceOutline from "@iconify/icons-material-symbols/local-laundry-service-outline";
 </script>
 
-<Icon icon={localLaundryServiceOutline} color="#db7b65" width="100%" />
+<Icon icon={localLaundryServiceOutline} color="#695356" width="100%" />

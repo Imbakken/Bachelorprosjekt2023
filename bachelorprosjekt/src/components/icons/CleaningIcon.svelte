@@ -3,4 +3,4 @@
   import vacuumCleaner from "@iconify/icons-mdi/vacuum-cleaner";
 </script>
 
-<Icon icon={vacuumCleaner} color="#db7b65" width="75%" />
+<Icon icon={vacuumCleaner} color="#695356" width="75%" />
