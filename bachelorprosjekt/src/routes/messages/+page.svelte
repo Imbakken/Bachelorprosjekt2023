@@ -1,6 +1,6 @@
 <script>
   import { db, auth } from "../../lib/firebase/firebase";
-  import { authHandlers, authStore } from "../../store/store";
+  import { authStore } from "../../store/store";
   import {
     collection,
     orderBy,
@@ -15,6 +15,8 @@
   } from "firebase/firestore";
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
+
+  import BackButton from "../../components/buttons/BackButton.svelte";
 
   let message = {
     title: "",
@@ -136,12 +138,12 @@
           <div class="messageCard">
             <div class="messageCardItem">
               <div class="messageCardText">
-                <h3>{message.title}</h3>
-                <p>{message.description}</p>
                 <div class="messageCardParagraph">
                   <p>{message.date.toDate().toLocaleString()}</p>
                   <p>Skrevet av {message.author}</p>
                 </div>
+                <h3>{message.title}</h3>
+                <p>{message.description}</p>
               </div>
               <div class="messageCardButtons">
                 {#if canEdit(message.createdBy)}
@@ -210,21 +212,25 @@
             {/if}
           </div>
         </form>
+        <BackButton />
       </div>
     </div>
   </div>
 {/if}
 
 <style>
-  h2 {
-    padding: 30px 0 30px 0;
-  }
+  /* Heading styles */
   h1 {
     padding-bottom: 30px;
   }
+
+  h2 {
+    padding: 30px 0 30px 0;
+  }
+
+  /* General styles */
   .mainContainer {
     min-height: 100vh;
-    padding-top: 50px;
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
@@ -232,7 +238,22 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    padding-top: 50px;
   }
+
+  .mainContainerContent {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
   .mainContainerRectangle {
     background-color: #fefaef;
     border-radius: 30px 30px 0 0;
@@ -243,17 +264,53 @@
     bottom: 0;
     overflow: scroll;
   }
-  .mainContainerContent {
-    margin: 0 auto;
+
+  /* Message card styles */
+  .messageCard {
+    background: #fbc9be;
+    border-radius: 15px;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .messageCardParagraph {
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .messageCardButtons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+  }
+
+  .messageCardButtons button {
+    background: #db7b65;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    width: 10em;
+  }
+
+  .messageCardItem {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
   }
+
+  /* Form styles */
   .mainContainerForm {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
+
   .mainContainerForm input,
   textarea {
     background: #fbc9be;
@@ -263,61 +320,22 @@
     color: #000000;
     width: 100%;
   }
-  .messageCard {
-    background: #fbc9be;
-    border-radius: 15px;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-  }
-  .messageCardParagraph {
-    font-size: 0.8em;
-  }
-  .messageCardButtons button {
-    background: #db7b65;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
-    text-decoration: none;
-    margin: 3px;
-    padding: 3px;
-    border-radius: 5px;
-    width: 100%;
-  }
-  .messageCardButtons {
-    display: flex;
-    justify-content: space-between;
-  }
-  .messageCardItem {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-  }
 
-  .mainContainer button {
+  /* Button styles */
+  .mainContainer button,
+  .buttonContainer button {
     border: none;
     cursor: pointer;
   }
-  .buttonContainer {
-    display: flex;
-    justify-content: center;
-  }
-  .buttonContainer button {
-    margin: 10px;
-    padding: 20px;
-  }
 
-  .buttonContainer {
-    display: flex;
-    justify-content: center;
-  }
   .buttonContainer button {
     background: #fbc9be;
-    color: #db7b65;
+    color: #695356;
     font-family: "Poppins", sans-serif;
     font-size: 1.2em;
     padding: 14px 0;
-    margin: 24px 5px;
+    margin: 5px;
     border-radius: 15px;
-    width: 50%;
+    width: 10em;
   }
 </style>

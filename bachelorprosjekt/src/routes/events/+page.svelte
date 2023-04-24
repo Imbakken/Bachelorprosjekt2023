@@ -1,6 +1,6 @@
 <script>
   import { db, auth } from "../../lib/firebase/firebase";
-  import { authHandlers, authStore } from "../../store/store";
+  import { authStore } from "../../store/store";
   import {
     collection,
     orderBy,
@@ -149,18 +149,18 @@
       <h1>Arrangementer</h1>
       <div class="mainContainerContent">
         {#each events as event}
-          <div class="messageCard">
-            <div class="messageCardItem">
-              <div class="messageCardText">
-                <div class="messageCardParagraph">
+          <div class="eventCard">
+            <div class="eventCardItem">
+              <div class="eventCardText">
+                <div class="eventCardParagraph">
                   <p>{event.date.toDate().toLocaleString()}</p>
                   <p>Arrangert av {event.organizer}</p>
                 </div>
+                <h3>{event.title}</h3>
+                <p>{event.place}</p>
+                <p>{event.info}</p>
               </div>
-              <h3>{event.title}</h3>
-              <p class="placeContainer">{event.place}</p>
-              <p>{event.info}</p>
-              <div class="messageCardButtons">
+              <div class="eventCardButtons">
                 {#if canEdit(event.createdBy)}
                   <button on:click={editEvent(event)}>
                     <p>Endre</p>
@@ -169,26 +169,32 @@
                     <p>Slett</p>
                   </button>
                 {/if}
-                <button on:click={() => showEventDetails(event)}>
-                  <p>Detaljer</p></button
+                <button
+                  on:click={() => {
+                    showEventDetails(event);
+                    document.getElementById("details").scrollIntoView();
+                  }}
                 >
+                  <p>Detaljer</p>
+                </button>
               </div>
             </div>
           </div>
         {/each}
         {#if selectedEvent !== null}
-          <div>
+          <div id="details">
             <h3>{selectedEvent.title}</h3>
             <p>{selectedEvent.info}</p>
             <p>
-              Dato og klokkeslett: {selectedEvent.date
-                .toDate()
-                .toLocaleString()}
+              <strong>Dato og klokkeslett:</strong>
+              {selectedEvent.date.toDate().toLocaleString()}
             </p>
-            <p>Varighet: {selectedEvent.duration} timer</p>
-            <p>Sted: {selectedEvent.place}</p>
-            <p>Arrangør: {selectedEvent.organizer}</p>
-            <button on:click={() => (selectedEvent = null)}>Close</button>
+            <p><strong>Varighet:</strong> {selectedEvent.duration} timer</p>
+            <p><strong>Sted:</strong> {selectedEvent.place}</p>
+            <p><strong>Arrangør:</strong> {selectedEvent.organizer}</p>
+            <div class="detailsButton">
+              <button on:click={() => (selectedEvent = null)}>Close</button>
+            </div>
           </div>
         {/if}
 
@@ -260,47 +266,56 @@
               <button on:click={onCancel} class="cancelButton">Avbryt</button>
             {/if}
           </div>
-          <BackButton />
         </form>
+        <BackButton />
       </div>
     </div>
   </div>
 {/if}
 
 <style>
+  /* Heading styles */
   h1 {
     padding-bottom: 30px;
   }
-  .placeContainer {
-    font-size: 0.7em;
+  h2 {
+    padding: 30px 0 30px 0;
   }
+
+  /* Main container styles */
   .mainContainer {
-    min-height: 100vh;
-    padding-top: 50px;
-    width: 100%;
-    max-width: 430px;
-    margin: 0 auto;
-    background-image: url("../../assets/bakgrunnKalender.jpg");
+    background-image: url("../../assets/bakgrunnBeskjeder.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0 auto;
+    max-width: 430px;
+    min-height: 100vh;
+    padding-top: 50px;
     position: relative;
+    width: 100%;
   }
+
+  /* Main container rectangle styles */
   .mainContainerRectangle {
     background-color: #fefaef;
     border-radius: 30px 30px 0 0;
+    bottom: 0;
     height: 75%;
-    width: 100%;
+    overflow: scroll;
     padding: 30px;
     position: absolute;
-    bottom: 0;
-    overflow: scroll;
+    width: 100%;
   }
+
+  /* Main container content styles */
   .mainContainerContent {
-    margin: 0 auto;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin: 0 auto;
   }
+
+  /* Main container form styles */
   .mainContainerForm {
     display: flex;
     flex-direction: column;
@@ -311,59 +326,93 @@
     background: #fbc9be;
     border: none;
     border-radius: 15px;
-    padding: 15px;
     color: #000000;
+    padding: 15px;
     width: 100%;
   }
-  .messageCard {
+
+  /* Event card styles */
+  .eventCard {
     background: #fbc9be;
     border-radius: 15px;
-    width: 100%;
     margin: 10px;
     padding: 10px;
+    width: 100%;
   }
-  .messageCardParagraph {
-    font-size: 0.8em;
+  .eventCardParagraph {
     display: flex;
+    font-size: 0.8em;
     justify-content: space-between;
   }
-
-  .messageCardItem {
+  .eventCardButtons {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+  }
+  .eventCardButtons button {
+    background: #db7b65;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    margin: 2px;
     padding: 5px;
+    text-decoration: none;
+    width: 8em;
+  }
+  .eventCardItem {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
   }
 
+  /* Button styles */
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+  .buttonContainer button {
+    background: #fbc9be;
+    color: #695356;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2em;
+    padding: 14px 0;
+    margin: 5px;
+    border-radius: 15px;
+    width: 10em;
+  }
   .mainContainer button {
     border: none;
     cursor: pointer;
   }
-  .messageCardButtons {
-    display: flex;
-    justify-content: space-between;
-  }
-  .messageCardButtons button {
-    background: #db7b65;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
-    text-decoration: none;
-    margin: 3px;
-    padding: 3px;
-    border-radius: 5px;
+
+  /* Event detail styles */
+  #details {
+    background: #fbc9be;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
     width: 100%;
   }
-  .buttonContainer {
+  #details p,
+  h3 {
+    margin: 5px 0;
+  }
+
+  #details button {
+    background: #db7b65;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    margin: 2px;
+    padding: 5px;
+    text-decoration: none;
+    width: 8em;
+  }
+
+  .detailsButton {
     display: flex;
     justify-content: center;
-  }
-  .buttonContainer button {
-    background: #fbc9be;
-    color: #db7b65;
-    font-family: "Poppins", sans-serif;
-    font-size: 1.2em;
-    padding: 14px 0;
-    margin: 24px 5px;
-    border-radius: 15px;
-    width: 50%;
   }
 </style>

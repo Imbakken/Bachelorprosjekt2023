@@ -15,13 +15,13 @@
   }
   .buttonContainer button {
     background: #fbc9be;
-    color: #db7b65;
+    color: #695356;
     border: none;
     font-family: "Poppins", sans-serif;
     font-size: 1.2em;
     padding: 14px 0;
-    margin: 10px 5px;
+    margin: 5px;
     border-radius: 15px;
-    width: 50%;
+    width: 10em;
   }
 </style>
