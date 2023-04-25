@@ -3,7 +3,7 @@
   import { auth, db } from "../lib/firebase/firebase";
   import { getDoc, doc, setDoc } from "firebase/firestore";
   import { authStore } from "../store/store";
-  export const prerender = true;
+  //export const prerender = true;
   const nonAuthRoutes = ["/", "product"];
 
   onMount(() => {

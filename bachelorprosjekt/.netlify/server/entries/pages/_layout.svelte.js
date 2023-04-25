@@ -8,9 +8,6 @@ const css = {
   map: null
 };
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  const prerender = true;
-  if ($$props.prerender === void 0 && $$bindings.prerender && prerender !== void 0)
-    $$bindings.prerender(prerender);
   $$result.css.add(css);
   return `<div class="mainContainer svelte-eq3j9s">${slots.default ? slots.default({}) : ``}
 </div>`;
