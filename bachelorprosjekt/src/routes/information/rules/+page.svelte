@@ -32,15 +32,11 @@
 </div>
 
 <style>
-  .mainContainerParagraph p,
-  ul {
-    margin-top: 10px;
-  }
-  .mainContainerParagraph h1,
-  h2 {
-    margin-top: 10px;
-  }
   .mainContainerParagraph ul {
+    margin-top: 10px;
     margin-left: 20px;
+  }
+  .mainContainerParagraph h1 {
+    margin-top: 10px;
   }
 </style>
