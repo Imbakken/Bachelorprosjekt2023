@@ -29,8 +29,7 @@
 
 <div class="authContainer">
   <div class="logoContainer">
-    <h1>VIVO</h1>
-    <p>En enklere studenthverdag</p>
+    <img src="/logo/Heimat.png" alt="Heimat logo" />
   </div>
   <form>
     {#if error}
@@ -45,13 +44,15 @@
       <input bind:value={password} type="password" placeholder="Password" />
     </label>
 
-    <button on:click={handleAuthenticate} type="button" class="submitBtn">
-      {#if authenticating}
-        <i class="fa-solid fa-spinner loadingSpinner" />
-      {:else}
-        Logg inn
-      {/if}
-    </button>
+    <div class="submitBtn">
+      <button on:click={handleAuthenticate} type="button">
+        {#if authenticating}
+          <i class="fa-solid fa-spinner loadingSpinner" />
+        {:else}
+          Logg inn
+        {/if}
+      </button>
+    </div>
   </form>
   <div class="options">
     <p>
@@ -70,7 +71,16 @@
     padding: 24px;
   }
   .logoContainer {
-    padding: 30px;
+    padding: 4em 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .logoContainer img {
+    width: 80%;
+    height: auto;
   }
   form {
     display: flex;
@@ -79,8 +89,7 @@
   }
   form,
   .options {
-    width: 400px;
-    max-width: 100%;
+    width: 80%;
     margin: 0 auto;
   }
   form input {
@@ -94,27 +103,27 @@
     border: none;
     background: transparent;
     color: #db7b65;
-    padding: 14px;
-  }
-  form input:focus {
-    border: none;
-    outline: none;
-  }
-  form label:focus-within {
-    border-color: #db7b65;
+    padding: 7% 0;
   }
   form button {
-    background: #fbcec3;
-    color: #db7b65;
-    border: 1px solid #db7b65;
-    padding: 14px 0;
-    margin: 24px 0;
-    border-radius: 40px;
-    cursor: pointer;
+    background: #fbc9be;
+    color: #695356;
+    font-family: "Poppins", sans-serif;
     font-size: 1.2em;
+    padding: 14px 0;
+    margin: 5px;
+    border-radius: 15px;
+    width: 10em;
+    cursor: pointer;
     display: grid;
     place-items: center;
-    font-family: "Poppins", sans-serif;
+    border: none;
+  }
+  .submitBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7%;
   }
   .error {
     color: #db7b65;
@@ -147,16 +156,5 @@
     to {
       transform: rotate(360deg);
     }
-  }
-  .logoContainer h1 {
-    font-family: "Gloock", serif;
-    color: #255f63;
-    text-align: center;
-    font-size: 3rem;
-  }
-  .logoContainer p {
-    font-family: "Comfortaa", cursive;
-    text-align: center;
-    font-size: 1em;
   }
 </style>

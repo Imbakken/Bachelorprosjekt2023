@@ -33,6 +33,7 @@
   let editStatus = false;
   let currentId = "";
   let selectedEvent = null;
+  let error = false;
 
   // Get events from Firestore and store them in the events array
   onMount(async () => {
@@ -49,7 +50,7 @@
       ...doc.data(),
     }));
     (err) => {
-      console.error(err);
+      console.log(err);
     };
   });
 
@@ -66,8 +67,8 @@
         text: "New event created",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -102,8 +103,8 @@
         text: "Event deleted",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -115,8 +116,9 @@
         text: "Event updated",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
+      error = true;
     }
   };
 
@@ -223,7 +225,6 @@
             </div>
           </div>
         {/if}
-
         <form
           on:submit|preventDefault={handleSubmit}
           id="mainForm"
@@ -285,7 +286,14 @@
               class="form-control"
             />
           </div>
-
+          {#if error}
+            <div class="error">
+              <p>
+                Informasjonen du har skrevet inn stemmer ikke, vennligst prøv
+                igjen. Har du husket å legge inn dato og klokkeslett?
+              </p>
+            </div>
+          {/if}
           <div class="buttonContainer">
             <button class="saveButton" disabled={!event.title}>
               <span class="ms-2">
@@ -395,6 +403,10 @@
     justify-content: space-between;
     padding: 10px;
   }
+  .error {
+    margin: 15px;
+    font-size: 0.8em;
+  }
 
   /* Button styles */
   .buttonContainer {
@@ -444,5 +456,28 @@
   .detailsButton {
     display: flex;
     justify-content: center;
+  }
+
+  @media (min-width: 430px) and (max-width: 1200px) {
+    .mainContainer {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .eventCardButtons {
+      display: flex;
+      flex-direction: column;
+    }
+    .eventCardItem {
+      display: flex;
+      flex-direction: row;
+    }
+    .eventCardParagraph {
+      display: flex;
+      flex-direction: column;
+    }
+    .eventCardText {
+      width: 80%;
+    }
   }
 </style>

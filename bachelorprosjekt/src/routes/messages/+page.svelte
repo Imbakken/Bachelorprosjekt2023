@@ -29,6 +29,7 @@
   let inputElement;
   let editStatus = false;
   let currentId = "";
+  let error = false;
 
   // Get events from Firestore and store them in the events array
   onMount(async () => {
@@ -45,7 +46,7 @@
       ...doc.data(),
     }));
     (err) => {
-      console.error(err);
+      console.log(err);
     };
   });
 
@@ -62,8 +63,9 @@
         text: "New message created",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
+      error = true;
     }
   };
 
@@ -95,8 +97,8 @@
         text: "Message deleted",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -108,8 +110,9 @@
         text: "Message updated",
       }).showToast();
       location.reload(); // Refresh the page
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.log(err);
+      error = true;
     }
   };
 
@@ -221,7 +224,14 @@
               class="form-control"
             />
           </div>
-
+          {#if error}
+            <div class="error">
+              <p>
+                Informasjonen du har skrevet inn stemmer ikke, vennligst prøv
+                igjen. Har du husket å legge inn dato og klokkeslett?
+              </p>
+            </div>
+          {/if}
           <div class="buttonContainer">
             <button class="saveButton" disabled={!message.title}>
               <span class="ms-2">
@@ -326,6 +336,11 @@
     justify-content: space-between;
   }
 
+  .error {
+    margin: 15px;
+    font-size: 0.8em;
+  }
+
   /* Form styles */
   .mainContainerForm {
     display: flex;
@@ -359,5 +374,28 @@
     margin: 5px;
     border-radius: 15px;
     width: 10em;
+  }
+
+  @media (min-width: 430px) and (max-width: 1200px) {
+    .mainContainer {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .messageCardButtons {
+      display: flex;
+      flex-direction: column;
+    }
+    .messageCardItem {
+      display: flex;
+      flex-direction: row;
+    }
+    .messageCardParagraph {
+      display: flex;
+      flex-direction: column;
+    }
+    .messageCardText {
+      width: 80%;
+    }
   }
 </style>

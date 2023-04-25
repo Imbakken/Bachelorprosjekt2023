@@ -282,6 +282,7 @@
   .buttonContainer {
     display: flex;
     justify-content: center;
+    margin: 1em 0;
   }
   .buttonContainer button {
     background: #fbc9be;
@@ -321,5 +322,12 @@
     align-content: stretch;
     justify-items: center;
     align-items: center;
+  }
+
+  @media (min-width: 430px) and (max-width: 1200px) {
+    .mainContainer {
+      max-width: 1200px;
+      width: 100%;
+    }
   }
 </style>

@@ -45,4 +45,10 @@
   .buttonContainer {
     margin: 15px;
   }
+  @media (min-width: 430px) and (max-width: 1200px) {
+    .mainContainer {
+      max-width: 1200px;
+      width: 100%;
+    }
+  }
 </style>
