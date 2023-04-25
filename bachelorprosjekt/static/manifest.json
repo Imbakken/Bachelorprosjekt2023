@@ -1,10 +1,10 @@
 {
-    "name": "My SvelteKit App",
-    "short_name": "My App",
-    "description": "This is my SvelteKit app.",
+    "name": "Heimat studentbolig app",
+    "short_name": "Heimat",
+    "description": "Dette er en app for de som bor i studentbolig.",
     "icons": [
       {
-        "src": "/favicon.png",
+        "src": "/logo/Heimat.png",
         "sizes": "192x192",
         "type": "image/png"
       }
