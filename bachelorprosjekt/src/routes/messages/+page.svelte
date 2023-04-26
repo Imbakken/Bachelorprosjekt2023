@@ -353,10 +353,10 @@
   textarea,
   input[type="datetime-local"] {
     background: #fbc9be;
+    color: #695356;
     border: none;
     border-radius: 15px;
     display: block;
-    color: #695356;
     padding: 15px;
     min-width: 90%;
     min-height: 2.4em;

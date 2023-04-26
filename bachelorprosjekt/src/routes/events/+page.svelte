@@ -370,16 +370,18 @@
     width: 100%;
   }
   .mainContainerForm input,
-  textarea,
-  input[type="datetime-local"] {
+  textarea {
     background: #fbc9be;
+    color: #695356;
     border: none;
     border-radius: 15px;
     display: block;
-    color: #695356;
     padding: 15px;
-    min-width: 90%;
     min-height: 2.4em;
+    width: 100%;
+  }
+  .mainContainerForm input[type="datetime-local"] {
+    min-width: 90%;
   }
 
   /* Event card styles */
