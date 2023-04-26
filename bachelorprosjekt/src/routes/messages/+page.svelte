@@ -357,7 +357,7 @@
     border-radius: 15px;
     padding: 15px;
     color: #000000;
-    width: 100%;
+    min-width: 100%;
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
     min-height: 1.2em;
