@@ -6,7 +6,7 @@ export const handler = init({
 	assets: new Set(["favicon.png","logo/Heimat.png","manifest.json","service-worker.js"]),
 	mimeTypes: {".png":"image/png",".json":"application/json"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.c443f955.js","imports":["_app/immutable/entry/start.c443f955.js","_app/immutable/chunks/index.4e557489.js","_app/immutable/chunks/singletons.85876bcb.js","_app/immutable/chunks/index.37300880.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.6312d806.js","imports":["_app/immutable/entry/app.6312d806.js","_app/immutable/chunks/index.4e557489.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.090a738a.js","imports":["_app/immutable/entry/start.090a738a.js","_app/immutable/chunks/index.317fa1c7.js","_app/immutable/chunks/singletons.a904113f.js","_app/immutable/chunks/index.98f42e13.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.35d1acf6.js","imports":["_app/immutable/entry/app.35d1acf6.js","_app/immutable/chunks/index.317fa1c7.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('../server/nodes/0.js'),
 			() => import('../server/nodes/1.js'),
