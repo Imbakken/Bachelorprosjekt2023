@@ -262,7 +262,7 @@
             <input
               type="number"
               bind:value={event.duration}
-              placeholder="Varighet"
+              placeholder="Timer"
               class="form-control"
             />
           </div>

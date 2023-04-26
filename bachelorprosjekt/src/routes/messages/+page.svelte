@@ -215,8 +215,7 @@
             <input
               type="datetime-local"
               bind:value={message.date}
-              placeholder="Dato og klokkeslett"
-              class="form-control"
+              class="form-control datetime-input"
             />
           </div>
           <div class="authorContainer">
@@ -358,8 +357,22 @@
     border-radius: 15px;
     display: block;
     padding: 15px;
-    min-width: 96vh;
+    width: 100%;
     min-height: 3.5em;
+  }
+
+  .datetime-input {
+    border: none;
+    box-sizing: border-box;
+    outline: 0;
+    padding-left: 0.75rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   /* Button styles */
