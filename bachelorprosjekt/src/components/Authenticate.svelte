@@ -102,8 +102,10 @@
   form input {
     border: none;
     background: transparent;
-    color: #db7b65;
+    color: #695356;
     padding: 7% 0;
+    font-size: 1em;
+    font-family: "Poppins", sans-serif;
   }
   form button {
     background: #fbc9be;
@@ -126,21 +128,21 @@
     margin: 7%;
   }
   .error {
-    color: #db7b65;
-    font-size: 0.9em;
+    color: #695356;
+    font-size: 1em;
     text-align: center;
   }
   .options {
     padding: 14px 0;
     overflow: hidden;
-    font-size: 0.9em;
+    font-size: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
   }
   .options p a {
-    color: #db7b65;
+    color: #695356;
     text-decoration: none;
   }
   .options p a:hover {

@@ -314,7 +314,7 @@
     padding-top: 15px;
   }
   .messageCardButtons button {
-    background: #db7b65;
+    background: #fefaef;
     color: #695356;
     font-family: "Poppins", sans-serif;
     font-size: 1em;
@@ -358,7 +358,7 @@
     border-radius: 15px;
     display: block;
     padding: 15px;
-    min-width: 90%;
+    min-width: 100%;
     min-height: 2.4em;
   }
 

@@ -382,7 +382,7 @@
     width: 100%;
   }
   .mainContainerForm input[type="datetime-local"] {
-    min-width: 90%;
+    min-width: 100%;
   }
 
   /* Event card styles */
@@ -399,7 +399,7 @@
     padding-top: 15px;
   }
   .eventCardButtons button {
-    background: #db7b65;
+    background: #fefaef;
     color: #695356;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
@@ -462,7 +462,7 @@
   }
 
   #details button {
-    background: #db7b65;
+    background: #fefaef;
     color: #695356;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
