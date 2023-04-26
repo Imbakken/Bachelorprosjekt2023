@@ -62,6 +62,7 @@
 
 <style>
   .mainContainer {
+    overflow: hidden;
     min-height: 100vh;
     background: #fefaef;
     position: relative;
