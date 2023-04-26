@@ -350,13 +350,14 @@
   }
 
   .mainContainerForm input,
-  textarea {
+  textarea,
+  input[type="datetime-local"] {
     background: #fbc9be;
     border: none;
     border-radius: 15px;
     padding: 15px;
     color: #000000;
-    width: 100%;
+    min-width: 100%;
   }
 
   /* Button styles */

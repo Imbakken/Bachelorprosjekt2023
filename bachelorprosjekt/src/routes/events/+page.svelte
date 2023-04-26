@@ -377,7 +377,7 @@
     border-radius: 15px;
     color: #695356;
     padding: 15px;
-    width: 100%;
+    min-width: 100%;
   }
 
   /* Event card styles */
