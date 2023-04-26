@@ -33,7 +33,7 @@
       <div class="smallContainer">
         <div class="left">
           <p>Vaskemaskin</p>
-          <p>Tørketrommer</p>
+          <p>Tørketrommel</p>
         </div>
         <div class="right">
           <p>20 kr</p>

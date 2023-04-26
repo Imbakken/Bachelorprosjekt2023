@@ -253,9 +253,10 @@
             <input
               type="datetime-local"
               bind:value={event.date}
-              class="form-control"
+              class="form-control datetime-input"
             />
           </div>
+
           <div class="duration">
             <label for="duration" class="durationLabel">Varighet</label>
             <input
@@ -381,9 +382,13 @@
     min-height: 3.5em;
   }
 
-  .mainContainerForm input[type="datetime-local"] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
+  .datetime-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 4px;
+    margin-bottom: 20px;
   }
 
   /* Event card styles */
