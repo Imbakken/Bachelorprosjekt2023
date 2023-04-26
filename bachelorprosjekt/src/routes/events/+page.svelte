@@ -375,6 +375,7 @@
     background: #fbc9be;
     border: none;
     border-radius: 15px;
+    display: block;
     color: #695356;
     padding: 15px;
     min-width: 90%;
