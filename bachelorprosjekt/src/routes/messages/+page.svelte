@@ -212,6 +212,9 @@
           </div>
           <div class="date">
             <label for="date" class="dateLabel">Dato og klokkeslett</label>
+            <p class="formLabel">
+              Husk å legge til dato og klokkeslett når du skal endre.
+            </p>
             <input
               type="datetime-local"
               bind:value={message.date}
@@ -373,6 +376,11 @@
     -moz-appearance: textfield;
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  .formLabel {
+    font-size: 0.7em;
+    margin-bottom: 5px;
   }
 
   /* Button styles */
