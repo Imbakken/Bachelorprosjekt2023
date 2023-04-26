@@ -381,6 +381,11 @@
     min-height: 3.5em;
   }
 
+  .mainContainerForm input[type="datetime-local"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
   /* Event card styles */
   .eventCard {
     background: #fbc9be;
