@@ -313,7 +313,6 @@
     margin-bottom: 10px;
   }
   .mainContainerLink a {
-    text-decoration: none;
     color: #695356;
   }
   .mainContainerLink a:hover {

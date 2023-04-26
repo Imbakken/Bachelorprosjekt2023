@@ -358,8 +358,8 @@
     border-radius: 15px;
     display: block;
     padding: 15px;
-    min-width: 100%;
-    min-height: 2.4em;
+    min-width: 96%;
+    min-height: 3.5em;
   }
 
   /* Button styles */
