@@ -458,6 +458,7 @@
 
   #details button {
     background: #db7b65;
+    color: #695356;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
     font-size: 0.8em;
