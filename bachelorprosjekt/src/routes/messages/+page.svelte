@@ -357,8 +357,8 @@
     border-radius: 15px;
     padding: 15px;
     color: #000000;
-    min-width: 96%;
-    min-height: 1.2em;
+    min-width: 90%;
+    min-height: 2.4em;
   }
 
   /* Button styles */
