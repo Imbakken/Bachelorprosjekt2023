@@ -383,12 +383,17 @@
   }
 
   .datetime-input {
-    width: 100%;
+    border: none;
     box-sizing: border-box;
-    padding: 10px;
-    font-size: 1em;
-    border-radius: 4px;
-    margin-bottom: 20px;
+    outline: 0;
+    padding-left: 0.75rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
+    margin: 0;
   }
 
   /* Event card styles */
