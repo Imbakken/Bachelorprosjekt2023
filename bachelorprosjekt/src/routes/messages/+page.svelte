@@ -358,7 +358,7 @@
     border-radius: 15px;
     display: block;
     padding: 15px;
-    min-width: 96%;
+    min-width: 96vh;
     min-height: 3.5em;
   }
 

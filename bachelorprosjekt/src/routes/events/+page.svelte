@@ -253,7 +253,6 @@
             <input
               type="datetime-local"
               bind:value={event.date}
-              placeholder="Dato og klokkeslett"
               class="form-control"
             />
           </div>
@@ -367,7 +366,6 @@
   .mainContainerForm {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
   }
   .mainContainerForm input,
@@ -379,7 +377,7 @@
     border-radius: 15px;
     display: block;
     padding: 15px;
-    min-width: 96%;
+    width: 100%;
     min-height: 3.5em;
   }
 
