@@ -1806,7 +1806,7 @@ const WasteIcon = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
-  code: '.mainContainer.svelte-1whznt.svelte-1whznt{min-height:100vh;padding-top:50px;width:100%;max-width:430px;margin:0 auto;background-image:url("../../assets/bakgrunnDashboard.jpg");background-repeat:no-repeat;background-size:cover;position:relative}.mainContainerRectangle.svelte-1whznt.svelte-1whznt{background-color:#fefaef;border-radius:30px 30px 0 0;height:75%;width:100%;padding:30px;position:absolute;bottom:0;overflow:scroll}.mainContainerContent.svelte-1whznt.svelte-1whznt{margin:5px 0;display:flex;flex-direction:column;align-items:center}.placeContainer.svelte-1whznt.svelte-1whznt{font-size:0.8em}.messageCard.svelte-1whznt.svelte-1whznt{background:#fbc9be;border-radius:15px;width:100%;margin:10px;padding:10px}.messageCardItem.svelte-1whznt.svelte-1whznt{padding:5px;display:flex;flex-direction:column}.messageCardParagraph.svelte-1whznt.svelte-1whznt{display:flex;justify-content:space-between}.mainContainerLink.svelte-1whznt.svelte-1whznt{display:flex;justify-content:flex-end;margin-bottom:10px}.mainContainerLink.svelte-1whznt a.svelte-1whznt{text-decoration:none;color:#695356}.mainContainerLink.svelte-1whznt a.svelte-1whznt:hover{font-weight:bold}.mainContainer.svelte-1whznt button.svelte-1whznt{cursor:pointer}.buttonContainer.svelte-1whznt.svelte-1whznt{display:flex;justify-content:center;margin:1em 0}.buttonContainer.svelte-1whznt button.svelte-1whznt{background:#fbc9be;color:#695356;border:none;font-family:"Poppins", sans-serif;font-size:1.2em;padding:14px 0;margin:24px 0;border-radius:15px;width:50%}.scrollMenu.svelte-1whznt.svelte-1whznt{padding:14px 0;display:grid;grid-auto-flow:column;gap:0px 10px;overflow:auto;white-space:nowrap}.scrollMenuItem.svelte-1whznt.svelte-1whznt{background:#fbc9be;text-decoration:none;white-space:normal;word-wrap:break-word;text-align:center;font-family:"Poppins", sans-serif;height:150px;width:100px;border-radius:15px;border:none;margin:0 auto;padding:10px 0;display:grid;grid-template-rows:30% 60%;gap:10px 0px;align-content:stretch;justify-items:center;align-items:center}@media(min-width: 430px) and (max-width: 1200px){.mainContainer.svelte-1whznt.svelte-1whznt{max-width:1200px;width:100%}}',
+  code: '.mainContainer.svelte-1ibl62c.svelte-1ibl62c{min-height:100vh;padding-top:50px;width:100%;max-width:430px;margin:0 auto;background-image:url("../../assets/bakgrunnDashboard.jpg");background-repeat:no-repeat;background-size:cover;position:relative}.mainContainerRectangle.svelte-1ibl62c.svelte-1ibl62c{background-color:#fefaef;border-radius:30px 30px 0 0;height:75%;width:100%;padding:30px;position:absolute;bottom:0;overflow:scroll}.mainContainerContent.svelte-1ibl62c.svelte-1ibl62c{margin:5px 0;display:flex;flex-direction:column;align-items:center}.placeContainer.svelte-1ibl62c.svelte-1ibl62c{font-size:0.8em}.messageCard.svelte-1ibl62c.svelte-1ibl62c{background:#fbc9be;border-radius:15px;width:100%;margin:10px;padding:10px}.messageCardItem.svelte-1ibl62c.svelte-1ibl62c{padding:5px;display:flex;flex-direction:column}.messageCardParagraph.svelte-1ibl62c.svelte-1ibl62c{display:flex;justify-content:space-between}.mainContainerLink.svelte-1ibl62c.svelte-1ibl62c{display:flex;justify-content:flex-end;margin-bottom:10px}.mainContainerLink.svelte-1ibl62c a.svelte-1ibl62c{text-decoration:none;color:#695356}.mainContainerLink.svelte-1ibl62c a.svelte-1ibl62c:hover{font-weight:bold}.mainContainer.svelte-1ibl62c button.svelte-1ibl62c{cursor:pointer}.buttonContainer.svelte-1ibl62c.svelte-1ibl62c{display:flex;justify-content:center;margin:1em 0}.buttonContainer.svelte-1ibl62c button.svelte-1ibl62c{background:#fbc9be;color:#695356;border:none;font-family:"Poppins", sans-serif;font-size:1.2em;padding:14px 0;margin:24px 0;border-radius:15px;width:50%}.scrollMenu.svelte-1ibl62c.svelte-1ibl62c{padding:14px 0;display:grid;grid-auto-flow:column;gap:0px 10px;overflow:auto;white-space:nowrap}.scrollMenuItem.svelte-1ibl62c.svelte-1ibl62c{background:#fbc9be;color:#695356;text-decoration:none;white-space:normal;word-wrap:break-word;text-align:center;font-family:"Poppins", sans-serif;height:150px;width:100px;border-radius:15px;border:none;margin:0 auto;padding:10px 0;display:grid;grid-template-rows:30% 60%;gap:10px 0px;align-content:stretch;justify-items:center;align-items:center}@media(min-width: 430px) and (max-width: 1200px){.mainContainer.svelte-1ibl62c.svelte-1ibl62c{max-width:1200px;width:100%}}',
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1819,46 +1819,46 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   });
   $$result.css.add(css);
   $$unsubscribe_authStore();
-  return `${$authStore ? `<div class="mainContainer svelte-1whznt"><div class="mainContainerRectangle svelte-1whznt"><h1>Hei ${escape(name)}</h1>
+  return `${$authStore ? `<div class="mainContainer svelte-1ibl62c"><div class="mainContainerRectangle svelte-1ibl62c"><h1>Hei ${escape(name)}</h1>
       <h2>Dette må du få med deg</h2>
-      <div class="mainContainerContent svelte-1whznt">${each(messages, (message) => {
-    return `<div class="messageCard svelte-1whznt"><div class="messageCardItem svelte-1whznt"><div class="messageCardText"><div class="messageCardParagraph svelte-1whznt"><p>${escape(message.date.toDate().toLocaleString())}</p>
+      <div class="mainContainerContent svelte-1ibl62c">${each(messages, (message) => {
+    return `<div class="messageCard svelte-1ibl62c"><div class="messageCardItem svelte-1ibl62c"><div class="messageCardText"><div class="messageCardParagraph svelte-1ibl62c"><p>${escape(message.date.toDate().toLocaleString())}</p>
                   <p>Skrevet av ${escape(message.author)}</p></div>
                 <h3>${escape(message.title)}</h3>
                 <p>${escape(message.description)}</p>
               </div></div>
           </div>`;
   })}</div>
-      <div class="mainContainerLink svelte-1whznt"><a href="/messages" class="svelte-1whznt">Flere beskjeder</a></div>
+      <div class="mainContainerLink svelte-1ibl62c"><a href="/messages" class="svelte-1ibl62c">Flere beskjeder</a></div>
 
       <h2>Dette skjer de kommende dagene</h2>
 
-      <div class="mainContainerContent svelte-1whznt">${each(events, (event) => {
-    return `<div class="messageCard svelte-1whznt"><div class="messageCardItem svelte-1whznt"><div class="messageCardText"><div class="messageCardParagraph svelte-1whznt"><p>${escape(event.date.toDate().toLocaleString())}</p>
+      <div class="mainContainerContent svelte-1ibl62c">${each(events, (event) => {
+    return `<div class="messageCard svelte-1ibl62c"><div class="messageCardItem svelte-1ibl62c"><div class="messageCardText"><div class="messageCardParagraph svelte-1ibl62c"><p>${escape(event.date.toDate().toLocaleString())}</p>
                   <p>Arrangert av ${escape(event.organizer)}</p>
                 </div></div>
               <h3>${escape(event.title)}</h3>
-              <p class="placeContainer svelte-1whznt">${escape(event.place)}</p>
+              <p class="placeContainer svelte-1ibl62c">${escape(event.place)}</p>
               <p>${escape(event.info)}</p></div>
           </div>`;
   })}</div>
-      <div class="mainContainerLink svelte-1whznt"><a href="/events" class="svelte-1whznt">Flere arrangementer</a></div>
+      <div class="mainContainerLink svelte-1ibl62c"><a href="/events" class="svelte-1ibl62c">Flere arrangementer</a></div>
       <h2>Nyttig informasjon</h2>
-      <div class="scrollMenu svelte-1whznt"><button class="scrollMenuItem svelte-1whznt"><span>Vaskeri</span>
+      <div class="scrollMenu svelte-1ibl62c"><button class="scrollMenuItem svelte-1ibl62c"><span>Vaskeri</span>
           <span class="icon">${validate_component(LaundryIcon, "LaundryIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Renhold</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Renhold</span>
           <span class="icon">${validate_component(CleaningIcon, "CleaningIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Avfall og kildesortering</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Avfall og kildesortering</span>
           <span class="icon">${validate_component(WasteIcon, "WasteIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Fellesareale</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Fellesareale</span>
           <span class="icon">${validate_component(CommonAreaIcon, "CommonAreaIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Regler og rutiner</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Regler og rutiner</span>
           <span class="icon">${validate_component(RulesIcon, "RulesIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Internett</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Internett</span>
           <span class="icon">${validate_component(InternetIcon, "InternetIcon").$$render($$result, {}, {}, {})}</span></button>
-        <button class="scrollMenuItem svelte-1whznt"><span>Viktige telefonnumre</span>
+        <button class="scrollMenuItem svelte-1ibl62c"><span>Viktige telefonnumre</span>
           <span class="icon">${validate_component(PhoneIcon, "PhoneIcon").$$render($$result, {}, {}, {})}</span></button></div>
-      <div class="buttonContainer svelte-1whznt"><button class="svelte-1whznt">Logg ut</button></div></div></div>` : ``}`;
+      <div class="buttonContainer svelte-1ibl62c"><button class="svelte-1ibl62c">Logg ut</button></div></div></div>` : ``}`;
 });
 export {
   Page as default

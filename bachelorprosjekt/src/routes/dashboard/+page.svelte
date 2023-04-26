@@ -305,6 +305,7 @@
   }
   .scrollMenuItem {
     background: #fbc9be;
+    color: #695356;
     text-decoration: none;
     white-space: normal;
     word-wrap: break-word;
