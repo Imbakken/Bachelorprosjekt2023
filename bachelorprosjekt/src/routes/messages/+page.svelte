@@ -17,6 +17,7 @@
   import { onMount } from "svelte";
 
   import BackButton from "../../components/buttons/BackButton.svelte";
+  import DateIcon from "../../components/icons/DateIcon.svelte";
 
   let message = {
     title: "",
@@ -159,11 +160,14 @@
           <div class="messageCard">
             <div class="messageCardItem">
               <div class="messageCardText">
-                <div class="messageCardParagraph">
-                  <p>{message.date.toDate().toLocaleString()}</p>
-                  <p>Skrevet av {message.author}</p>
-                </div>
                 <h3>{message.title}</h3>
+                <div class="dateContainer">
+                  <DateIcon />
+                  <p>
+                    <strong>{message.date.toDate().toLocaleString()}</strong>
+                  </p>
+                </div>
+                <p>Skrevet av {message.author}</p>
                 <p>{message.description}</p>
               </div>
               <div class="messageCardButtons">
@@ -255,9 +259,11 @@
   h1 {
     padding-bottom: 30px;
   }
-
   h2 {
     padding: 30px 0 30px 0;
+  }
+  h3 {
+    font-size: 1.5em;
   }
 
   /* General styles */
@@ -272,20 +278,17 @@
     position: relative;
     padding-top: 50px;
   }
-
   .mainContainerContent {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   .buttonContainer {
     display: flex;
     justify-content: center;
     margin-top: 25px;
   }
-
   .mainContainerRectangle {
     background-color: #fefaef;
     border-radius: 30px 30px 0 0;
@@ -305,23 +308,16 @@
     margin: 10px;
     padding: 10px;
   }
-
-  .messageCardParagraph {
-    font-size: 0.8em;
-    display: flex;
-    justify-content: space-between;
-  }
-
   .messageCardButtons {
     display: flex;
     justify-content: space-around;
     padding-top: 15px;
   }
-
   .messageCardButtons button {
     background: #db7b65;
+    color: #695356;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
     text-decoration: none;
     padding: 5px;
     margin: 2px;
@@ -339,6 +335,11 @@
   .error {
     margin: 15px;
     font-size: 0.8em;
+  }
+
+  .dateContainer {
+    display: flex;
+    align-items: center;
   }
 
   /* Form styles */
@@ -389,10 +390,6 @@
     .messageCardItem {
       display: flex;
       flex-direction: row;
-    }
-    .messageCardParagraph {
-      display: flex;
-      flex-direction: column;
     }
     .messageCardText {
       width: 80%;

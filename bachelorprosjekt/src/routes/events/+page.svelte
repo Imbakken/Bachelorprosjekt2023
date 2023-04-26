@@ -18,6 +18,8 @@
   import { onMount } from "svelte";
 
   import BackButton from "../../components/buttons/BackButton.svelte";
+  import PlaceIcon from "../../components/icons/PlaceIcon.svelte";
+  import DateIcon from "../../components/icons/DateIcon.svelte";
 
   let event = {
     title: "",
@@ -180,12 +182,17 @@
           <div class="eventCard">
             <div class="eventCardItem">
               <div class="eventCardText">
-                <div class="eventCardParagraph">
-                  <p>{event.date.toDate().toLocaleString()}</p>
-                  <p>Arrangert av {event.organizer}</p>
-                </div>
                 <h3>{event.title}</h3>
-                <p>{event.place}</p>
+                <div class="placeContainer">
+                  <PlaceIcon />
+                  <p>{event.place}</p>
+                </div>
+                <div class="dateContainer">
+                  <DateIcon />
+                  <p>
+                    <strong>{event.date.toDate().toLocaleString()}</strong>
+                  </p>
+                </div>
                 <p>{event.info}</p>
               </div>
               <div class="eventCardButtons">
@@ -273,7 +280,7 @@
             <input
               type="text"
               bind:value={event.organizer}
-              placeholder="arrangør"
+              placeholder="Arrangør"
               class="form-control"
             />
           </div>
@@ -319,6 +326,9 @@
   h2 {
     padding: 30px 0 30px 0;
   }
+  h3 {
+    font-size: 1.5em;
+  }
 
   /* Main container styles */
   .mainContainer {
@@ -360,11 +370,12 @@
     width: 100%;
   }
   .mainContainerForm input,
-  textarea {
+  textarea,
+  input[type="datetime-local"] {
     background: #fbc9be;
     border: none;
     border-radius: 15px;
-    color: #000000;
+    color: #695356;
     padding: 15px;
     width: 100%;
   }
@@ -377,11 +388,6 @@
     padding: 10px;
     width: 100%;
   }
-  .eventCardParagraph {
-    display: flex;
-    font-size: 0.8em;
-    justify-content: space-between;
-  }
   .eventCardButtons {
     display: flex;
     justify-content: space-around;
@@ -389,9 +395,10 @@
   }
   .eventCardButtons button {
     background: #db7b65;
+    color: #695356;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
     margin: 2px;
     padding: 5px;
     text-decoration: none;
@@ -400,12 +407,19 @@
   .eventCardItem {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 10px;
   }
   .error {
     margin: 15px;
     font-size: 0.8em;
+  }
+  .placeContainer {
+    display: flex;
+    align-items: center;
+  }
+  .dateContainer {
+    display: flex;
+    align-items: center;
   }
 
   /* Button styles */
@@ -471,10 +485,6 @@
     .eventCardItem {
       display: flex;
       flex-direction: row;
-    }
-    .eventCardParagraph {
-      display: flex;
-      flex-direction: column;
     }
     .eventCardText {
       width: 80%;

@@ -25,6 +25,10 @@
   import PhoneIcon from "../../components/icons/PhoneIcon.svelte";
   import RulesIcon from "../../components/icons/RulesIcon.svelte";
   import WasteIcon from "../../components/icons/WasteIcon.svelte";
+  import ArrowLeft from "../../components/icons/ArrowLeft.svelte";
+  import ArrowRight from "../../components/icons/ArrowRight.svelte";
+  import PlaceIcon from "../../components/icons/PlaceIcon.svelte";
+  import DateIcon from "../../components/icons/DateIcon.svelte";
 
   // Define variables used in the component
   let messages = []; // Array to store messages
@@ -101,6 +105,16 @@
       unsubscribe();
     }
   });
+
+  let scrollContainer; // Reference to the scrollContent div
+
+  function scrollLeft() {
+    scrollContainer.scrollLeft -= 100; // Scroll left by 100 pixels
+  }
+
+  function scrollRight() {
+    scrollContainer.scrollLeft += 100; // Scroll right by 100 pixels
+  }
 </script>
 
 {#if $authStore}
@@ -110,14 +124,19 @@
       <h2>Dette må du få med deg</h2>
       <div class="mainContainerContent">
         {#each messages as message}
-          <div class="messageCard">
-            <div class="messageCardItem">
-              <div class="messageCardText">
-                <div class="messageCardParagraph">
-                  <p>{message.date.toDate().toLocaleString()}</p>
-                  <p>Skrevet av {message.author}</p>
-                </div>
+          <div class="mainCard">
+            <div class="mainCardItem">
+              <div class="mainCardText">
                 <h3>{message.title}</h3>
+                <div class="dateContainer">
+                  <DateIcon />
+                  <p>
+                    <strong>{message.date.toDate().toLocaleString()}</strong>
+                  </p>
+                </div>
+                <p class="small">
+                  Skrevet av <strong>{message.author}</strong>
+                </p>
                 <p>{message.description}</p>
               </div>
             </div>
@@ -132,17 +151,22 @@
 
       <div class="mainContainerContent">
         {#each events as event}
-          <div class="messageCard">
-            <div class="messageCardItem">
-              <div class="messageCardText">
-                <div class="messageCardParagraph">
-                  <p>{event.date.toDate().toLocaleString()}</p>
-                  <p>Arrangert av {event.organizer}</p>
+          <div class="mainCard">
+            <div class="mainCardItem">
+              <div class="mainCardText">
+                <h3>{event.title}</h3>
+                <div class="placeContainer">
+                  <PlaceIcon />
+                  <p>{event.place}</p>
                 </div>
+                <div class="dateContainer">
+                  <DateIcon />
+                  <p>
+                    <strong>{event.date.toDate().toLocaleString()}</strong>
+                  </p>
+                </div>
+                <p>{event.info}</p>
               </div>
-              <h3>{event.title}</h3>
-              <p class="placeContainer">{event.place}</p>
-              <p>{event.info}</p>
             </div>
           </div>
         {/each}
@@ -152,63 +176,73 @@
       </div>
       <h2>Nyttig informasjon</h2>
       <div class="scrollMenu">
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/laundry")}
-        >
-          <span>Vaskeri</span>
-          <span class="icon"><LaundryIcon /></span>
+        <button class="arrowButton leftArrowButton" on:click={scrollLeft}>
+          <span class="icon"><ArrowLeft /></span>
         </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/cleaning")}
-        >
-          <span>Renhold</span>
-          <span class="icon"><CleaningIcon /></span>
-        </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/waste")}
-        >
-          <span>Avfall og kildesortering</span>
-          <span class="icon"><WasteIcon /></span>
-        </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/commonarea")}
-        >
-          <span>Fellesareale</span>
-          <span class="icon"><CommonAreaIcon /></span>
-        </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/rules")}
-        >
-          <span>Regler og rutiner</span>
-          <span class="icon"><RulesIcon /></span>
-        </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/internet")}
-        >
-          <span>Internett</span>
-          <span class="icon"><InternetIcon /></span>
-        </button>
-        <button
-          class="scrollMenuItem"
-          on:click|preventDefault={() =>
-            (window.location.href = "/information/phone")}
-        >
-          <span>Viktige telefonnumre</span>
-          <span class="icon"><PhoneIcon /></span>
+        <div class="scrollContent" bind:this={scrollContainer}>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/laundry")}
+          >
+            <span>Vaskeri</span>
+            <span class="icon"><LaundryIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/cleaning")}
+          >
+            <span>Renhold</span>
+            <span class="icon"><CleaningIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/waste")}
+          >
+            <span>Avfall og kildesortering</span>
+            <span class="icon"><WasteIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/commonarea")}
+          >
+            <span>Fellesareale</span>
+            <span class="icon"><CommonAreaIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/rules")}
+          >
+            <span>Regler og rutiner</span>
+            <span class="icon"><RulesIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/internet")}
+          >
+            <span>Internett</span>
+            <span class="icon"><InternetIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/phone")}
+          >
+            <span>Viktige telefonnumre</span>
+            <span class="icon"><PhoneIcon /></span>
+          </button>
+        </div>
+
+        <button class="arrowButton rightArrowButton" on:click={scrollRight}>
+          <span class="icon"><ArrowRight /></span>
         </button>
       </div>
+
       <div class="buttonContainer">
         <button on:click={authHandlers.logout}>Logg ut</button>
       </div>
@@ -217,6 +251,9 @@
 {/if}
 
 <style>
+  h3 {
+    font-size: 1.5em;
+  }
   .mainContainer {
     min-height: 100vh;
     padding-top: 50px;
@@ -244,24 +281,31 @@
     flex-direction: column;
     align-items: center;
   }
-  .placeContainer {
-    font-size: 0.8em;
-  }
-  .messageCard {
+
+  .mainCard {
     background: #fbc9be;
     border-radius: 15px;
     width: 100%;
     margin: 10px;
     padding: 10px;
   }
-  .messageCardItem {
+  .mainCardItem {
     padding: 5px;
     display: flex;
     flex-direction: column;
   }
-  .messageCardParagraph {
+  .placeContainer {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+  }
+  .dateContainer {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+  }
+  .small {
+    font-size: 0.8em;
   }
   .mainContainerLink {
     display: flex;
@@ -296,12 +340,9 @@
     width: 50%;
   }
   .scrollMenu {
-    padding: 14px 0;
-    display: grid;
-    grid-auto-flow: column;
-    gap: 0px 10px;
-    overflow: auto;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
   }
   .scrollMenuItem {
     background: #fbc9be;
@@ -311,11 +352,11 @@
     word-wrap: break-word;
     text-align: center;
     font-family: "Poppins", sans-serif;
-    height: 150px;
+    font-weight: bold;
+    height: 160px;
     width: 100px;
     border-radius: 15px;
     border: none;
-    margin: 0 auto;
     padding: 10px 0;
     display: grid;
     grid-template-rows: 30% 60%;
@@ -323,6 +364,26 @@
     align-content: stretch;
     justify-items: center;
     align-items: center;
+    flex-shrink: 0;
+    margin-right: 1rem;
+    scroll-snap-align: center;
+  }
+  .scrollContent {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  .arrowButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {
