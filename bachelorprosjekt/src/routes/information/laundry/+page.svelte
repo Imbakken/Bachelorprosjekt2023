@@ -46,7 +46,7 @@
 
 <style>
   .mainContainerParagraph p {
-    margin-top: 10px;
+    margin: 10px 0;
   }
   .smallContainer {
     display: flex;
@@ -62,6 +62,6 @@
     margin-left: 0px;
   }
   .linkContainer a {
-    color: #db7b65;
+    color: #695356;
   }
 </style>

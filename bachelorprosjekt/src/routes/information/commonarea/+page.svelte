@@ -13,6 +13,6 @@
 
 <style>
   .mainContainerParagraph p {
-    margin-top: 10px;
+    margin: 10px 0;
   }
 </style>

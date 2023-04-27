@@ -271,7 +271,7 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background-image: url("../../assets/bakgrunnBeskjeder.jpg");
+    background-image: url("../../assets/backgroundapp/bakgrunnBeskjeder.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -415,6 +415,13 @@
     }
     .messageCardText {
       width: 80%;
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .mainContainer {
+      max-width: 1920px;
+      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop3.jpg");
     }
   }
 </style>

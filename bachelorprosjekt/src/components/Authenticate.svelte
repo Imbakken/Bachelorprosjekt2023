@@ -69,6 +69,7 @@
     justify-content: center;
     flex: 1;
     padding: 24px;
+    margin-bottom: 5em;
   }
   .logoContainer {
     padding: 4em 0;
@@ -157,6 +158,15 @@
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .logoContainer img {
+      width: 40%;
+      height: auto;
+    }
+    form {
+      width: 40%;
     }
   }
 </style>

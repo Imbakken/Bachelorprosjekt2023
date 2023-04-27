@@ -122,12 +122,12 @@
 {#if $authStore}
   <div class="mainContainer">
     <div class="mainContainerRectangle">
-      <div class="mainContainerHeader">
-        <h1>Hei {name}</h1>
-        <LogOut />
-      </div>
-      <h2>Dette må du få med deg</h2>
       <div class="mainContainerContent">
+        <div class="mainContainerHeader">
+          <h1>Hei {name}</h1>
+          <LogOut />
+        </div>
+        <h2>Dette må du få med deg</h2>
         <div class="mainContainerPartContent">
           {#each messages as message}
             <div class="mainCard">
@@ -180,72 +180,72 @@
           <a href="/events">Flere arrangementer</a>
         </div>
         <h2>Nyttig informasjon</h2>
-        <div class="scrollMenu">
-          <button class="arrowButton leftArrowButton" on:click={scrollLeft}>
-            <span class="icon"><ArrowLeft /></span>
+      </div>
+      <div class="scrollMenu">
+        <button class="arrowButton leftArrowButton" on:click={scrollLeft}>
+          <span class="icon"><ArrowLeft /></span>
+        </button>
+        <div class="scrollContent" bind:this={scrollContainer}>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/laundry")}
+          >
+            <span>Vaskeri</span>
+            <span class="icon"><LaundryIcon /></span>
           </button>
-          <div class="scrollContent" bind:this={scrollContainer}>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/laundry")}
-            >
-              <span>Vaskeri</span>
-              <span class="icon"><LaundryIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/cleaning")}
-            >
-              <span>Renhold</span>
-              <span class="icon"><CleaningIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/waste")}
-            >
-              <span>Avfall og kildesortering</span>
-              <span class="icon"><WasteIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/commonarea")}
-            >
-              <span>Fellesareale</span>
-              <span class="icon"><CommonAreaIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/rules")}
-            >
-              <span>Regler og rutiner</span>
-              <span class="icon"><RulesIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/internet")}
-            >
-              <span>Internett</span>
-              <span class="icon"><InternetIcon /></span>
-            </button>
-            <button
-              class="scrollMenuItem"
-              on:click|preventDefault={() =>
-                (window.location.href = "/information/phone")}
-            >
-              <span>Viktige telefonnumre</span>
-              <span class="icon"><PhoneIcon /></span>
-            </button>
-          </div>
-          <button class="arrowButton rightArrowButton" on:click={scrollRight}>
-            <span class="icon"><ArrowRight /></span>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/cleaning")}
+          >
+            <span>Renhold</span>
+            <span class="icon"><CleaningIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/waste")}
+          >
+            <span>Avfall og kildesortering</span>
+            <span class="icon"><WasteIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/commonarea")}
+          >
+            <span>Fellesareale</span>
+            <span class="icon"><CommonAreaIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/rules")}
+          >
+            <span>Regler og rutiner</span>
+            <span class="icon"><RulesIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/internet")}
+          >
+            <span>Internett</span>
+            <span class="icon"><InternetIcon /></span>
+          </button>
+          <button
+            class="scrollMenuItem"
+            on:click|preventDefault={() =>
+              (window.location.href = "/information/phone")}
+          >
+            <span>Viktige telefonnumre</span>
+            <span class="icon"><PhoneIcon /></span>
           </button>
         </div>
+        <button class="arrowButton rightArrowButton" on:click={scrollRight}>
+          <span class="icon"><ArrowRight /></span>
+        </button>
       </div>
     </div>
   </div>
@@ -258,7 +258,7 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background-image: url("../../assets/bakgrunnDashboard.jpg");
+    background-image: url("../../assets/backgroundapp/bakgrunnDashboard.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -273,7 +273,7 @@
     border-radius: 30px 30px 0 0;
     height: 75%;
     width: 100%;
-    padding: 30px;
+
     position: absolute;
     bottom: 0;
     overflow: scroll;
@@ -285,7 +285,7 @@
     align-items: center;
   }
   .mainContainerContent {
-    margin-bottom: 5em;
+    padding: 30px;
   }
   .mainCard {
     background: #fbc9be;
@@ -333,7 +333,7 @@
   .scrollMenu {
     display: flex;
     align-items: center;
-    margin: 1rem 0;
+    margin-bottom: 8em;
   }
   .scrollMenuItem {
     background: #fbc9be;
@@ -381,7 +381,18 @@
   @media (min-width: 430px) and (max-width: 1200px) {
     .mainContainer {
       max-width: 1200px;
-      width: 100%;
+    }
+    .scrollMenu {
+      justify-content: center;
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .mainContainer {
+      max-width: 1920px;
+      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop1.jpg");
+    }
+    .scrollMenu {
+      justify-content: center;
     }
   }
 </style>

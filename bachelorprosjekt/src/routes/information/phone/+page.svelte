@@ -28,6 +28,9 @@
     flex-direction: column;
     align-items: center;
   }
+  .mainContainerParagraph p {
+    margin: 10px 0;
+  }
   h1 {
     margin: 10px 0;
   }

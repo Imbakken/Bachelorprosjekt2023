@@ -103,13 +103,7 @@
 <style>
   .mainContainerParagraph p,
   ul {
-    margin-top: 10px;
-  }
-  .mainContainerParagraph h1,
-  h2,
-  h3 {
-    color: #db7b65;
-    margin-top: 10px;
+    margin: 10px 0;
   }
   .mainContainerParagraph ul {
     margin-left: 20px;

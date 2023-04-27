@@ -21,7 +21,7 @@
     margin: 0 auto;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../../assets/bakgrunnIkkeBruker2.jpg");
+    background-image: url("../../assets/backgroundapp/bakgrunnIkkeBruker2.jpg");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +51,12 @@
   @media (min-width: 430px) and (max-width: 1200px) {
     .mainContainer {
       max-width: 1200px;
-      width: 100%;
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .mainContainer {
+      max-width: 1920px;
+      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop5.jpg");
     }
   }
 </style>

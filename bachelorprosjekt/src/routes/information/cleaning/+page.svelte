@@ -59,7 +59,7 @@
 <style>
   .mainContainerParagraph p,
   ul {
-    margin-top: 10px;
+    margin: 10px 0;
   }
   .mainContainerParagraph h1,
   h2 {

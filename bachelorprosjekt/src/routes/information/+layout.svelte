@@ -8,9 +8,6 @@
     <div class="mainContainerRectangle">
       <div class="mainContainerParagraph">
         <slot />
-        <div class="buttonContainer">
-          <BackButton />
-        </div>
       </div>
     </div>
   </div>
@@ -27,7 +24,7 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background-image: url("../../assets/bakgrunnInfo.jpg");
+    background-image: url("../../assets/backgroundapp/bakgrunnInfo.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -42,13 +39,20 @@
     bottom: 0;
     overflow: scroll;
   }
-  .buttonContainer {
-    margin: 15px;
+  .mainContainerParagraph {
+    margin-bottom: 5em;
   }
+
   @media (min-width: 430px) and (max-width: 1200px) {
     .mainContainer {
       max-width: 1200px;
       width: 100%;
+    }
+  }
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .mainContainer {
+      max-width: 1920px;
+      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop2.jpg");
     }
   }
 </style>

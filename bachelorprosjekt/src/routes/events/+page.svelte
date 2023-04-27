@@ -339,7 +339,7 @@
 
   /* Main container styles */
   .mainContainer {
-    background-image: url("../../assets/bakgrunnBeskjeder.jpg");
+    background-image: url("../../assets/backgroundapp/bakgrunnKalender.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
@@ -535,6 +535,13 @@
     }
     .eventCardText {
       width: 80%;
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1920px) {
+    .mainContainer {
+      max-width: 1920px;
+      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop4.jpg");
     }
   }
 </style>
