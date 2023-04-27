@@ -16,13 +16,12 @@
 <style>
   .mainContainer {
     min-height: 100vh;
-    padding-top: 50px;
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../../assets/bakgrunnIkkeBruker.jpg");
+    background-image: url("../../assets/bakgrunnIkkeBruker2.jpg");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,6 +36,7 @@
   }
   h1 {
     font-family: "Comfortaa", cursive;
+    margin: 10px;
   }
   .linkContainer {
     padding-top: 10px;
@@ -46,5 +46,12 @@
   }
   .linkContainer p a:hover {
     font-weight: bold;
+  }
+
+  @media (min-width: 430px) and (max-width: 1200px) {
+    .mainContainer {
+      max-width: 1200px;
+      width: 100%;
+    }
   }
 </style>
