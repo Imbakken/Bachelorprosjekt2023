@@ -336,7 +336,8 @@
     padding: 14px 0;
     margin: 24px 0;
     border-radius: 15px;
-    width: 50%;
+    width: 10em;
+    height: 3em;
   }
   .scrollMenu {
     display: flex;
@@ -377,9 +378,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    margin-right: 0.5rem;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.2rem;
     border: none;
     background: none;
     cursor: pointer;

@@ -22,7 +22,6 @@
   let message = {
     title: "",
     description: "",
-    date: Timestamp.fromDate(new Date()),
     author: "",
   };
 
@@ -32,23 +31,29 @@
   let currentId = "";
   let error = false;
 
-  // Get events from Firestore and store them in the events array
   onMount(async () => {
-    const today = new Date(); // get today's date
+    const today = new Date();
+    const oneWeekAgo = new Date();
+    const oneWeekAhead = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7); // subtract 7 days
+    oneWeekAhead.setDate(today.getDate() + 7); // add 7 days
+
     const q = query(
       collection(db, "messages"),
-      where("date", ">=", Timestamp.fromDate(today)),
-      orderBy("date", "asc")
+      where("createdAt", ">=", Timestamp.fromDate(oneWeekAgo)),
+      where("createdAt", "<=", Timestamp.fromDate(oneWeekAhead)),
+      orderBy("createdAt", "asc")
     );
-    const querySnapshot = await getDocs(q);
 
-    messages = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-    (err) => {
+    try {
+      const querySnapshot = await getDocs(q);
+      messages = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+    } catch (err) {
       console.log(err);
-    };
+    }
   });
 
   // Add the message object to Firestore
@@ -81,7 +86,6 @@
     currentId = currentMessage.id;
     message.title = currentMessage.title;
     message.description = currentMessage.description;
-    message.date = currentMessage.date;
     message.author = currentMessage.author;
     editStatus = true;
 
@@ -119,8 +123,6 @@
 
   // Handle submit
   const handleSubmit = () => {
-    if (!message.title) return;
-    message.date = Timestamp.fromDate(new Date(message.date));
     if (!editStatus) {
       addMessage();
     } else {
@@ -131,12 +133,15 @@
     message = {
       title: "",
       description: "",
-      date: Timestamp.fromDate(new Date()),
       author: "",
     };
     inputElement.focus();
   };
 
+  function scrollTo() {
+    const formSection = document.getElementById("mainForm");
+    formSection.scrollIntoView({ behavior: "smooth" });
+  }
   // Cancel
   const onCancel = () => {
     editStatus = false;
@@ -144,7 +149,6 @@
     message = {
       title: "",
       description: "",
-      date: Timestamp.fromDate(new Date()),
       author: "",
     };
   };
@@ -154,7 +158,16 @@
 {#if $authStore}
   <div class="mainContainer">
     <div class="mainContainerRectangle">
-      <h1>Beskjeder</h1>
+      <div class="mainContainerHeader">
+        <h1>Beskjeder</h1>
+        <button
+          on:click={() => {
+            scrollTo();
+          }}
+        >
+          <p>Legg til en ny beskjed</p>
+        </button>
+      </div>
       <div class="mainContainerContent">
         {#each messages as message}
           <div class="messageCard">
@@ -162,13 +175,14 @@
               <div class="messageCardText">
                 <h3>{message.title}</h3>
                 <div class="dateContainer">
-                  <DateIcon />
                   <p>
-                    <strong>{message.date.toDate().toLocaleString()}</strong>
+                    <strong
+                      >{message.createdAt.toDate().toLocaleString()}</strong
+                    >
                   </p>
                 </div>
                 <p>Skrevet av {message.author}</p>
-                <p>{message.description}</p>
+                <p class="larger">{message.description}</p>
               </div>
               <div class="messageCardButtons">
                 {#if canEdit(message.createdBy)}
@@ -190,6 +204,7 @@
           class="mainContainerForm"
         >
           <h2>Legg til en ny beskjed</h2>
+          <p>Beskjeden blir liggende ute i 2 uker.</p>
           <div class="titleContainer">
             <label for="title" class="titleLabel">Tittel</label>
             <input
@@ -210,22 +225,13 @@
               class="form-control"
             />
           </div>
-          <div class="date">
-            <label for="date" class="dateLabel">Dato og klokkeslett</label>
-            <p class="formLabel">
-              Husk å legge til dato og klokkeslett når du skal endre.
-            </p>
-            <input
-              type="datetime-local"
-              bind:value={message.date}
-              class="form-control datetime-input"
-            />
-          </div>
+
           <div class="authorContainer">
             <label for="author" class="authorLabel">Skrevet av</label>
             <input
               type="text"
               bind:value={message.author}
+              bind:this={inputElement}
               placeholder="Skrevet av"
               class="form-control"
             />
@@ -234,7 +240,7 @@
             <div class="error">
               <p>
                 Informasjonen du har skrevet inn stemmer ikke, vennligst prøv
-                igjen. Har du husket å legge inn dato og klokkeslett?
+                igjen.
               </p>
             </div>
           {/if}
@@ -258,14 +264,12 @@
 
 <style>
   /* Heading styles */
-  h1 {
-    padding-bottom: 30px;
-  }
   h2 {
-    padding: 30px 0 30px 0;
+    padding-top: 30px;
+    margin-bottom: 5px;
   }
   h3 {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
 
   /* General styles */
@@ -279,6 +283,22 @@
     background-size: cover;
     position: relative;
     padding-top: 50px;
+  }
+  .mainContainerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mainContainerHeader Button {
+    background: #fbc9be;
+    color: #695356;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    width: 10em;
   }
   .mainContainerContent {
     margin: 0 auto;
@@ -343,6 +363,10 @@
     display: flex;
     align-items: center;
   }
+  .larger {
+    margin: 0.5em 0;
+    font-size: 1em;
+  }
 
   /* Form styles */
   .mainContainerForm {
@@ -350,37 +374,16 @@
     flex-direction: column;
     width: 100%;
   }
-
   .mainContainerForm input,
-  textarea,
-  input[type="datetime-local"] {
+  textarea {
     background: #fbc9be;
-    color: #695356;
+    color: #000;
     border: none;
     border-radius: 15px;
     display: block;
     padding: 15px;
     width: 100%;
     min-height: 3.5em;
-  }
-
-  .datetime-input {
-    border: none;
-    box-sizing: border-box;
-    outline: 0;
-    padding-left: 0.75rem;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    -moz-appearance: textfield;
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  .formLabel {
-    font-size: 0.7em;
-    margin-bottom: 5px;
   }
 
   /* Button styles */
@@ -399,6 +402,7 @@
     margin: 5px;
     border-radius: 15px;
     width: 10em;
+    height: 3em;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {

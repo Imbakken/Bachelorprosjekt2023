@@ -3,4 +3,4 @@
   import chevronLeft from "@iconify/icons-mdi/chevron-left";
 </script>
 
-<Icon icon={chevronLeft} color="#695356" width="75" />
+<Icon icon={chevronLeft} color="#695356" width="35" />

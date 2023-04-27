@@ -1,11 +1,13 @@
 <script>
+  import ArrowLeft from "../icons/ArrowLeft.svelte";
+
   function goBack() {
     window.history.back();
   }
 </script>
 
 <div class="buttonContainer">
-  <button on:click={goBack}>Tilbake</button>
+  <button class="btn" on:click={goBack}><ArrowLeft />Tilbake</button>
 </div>
 
 <style>
@@ -14,7 +16,7 @@
     justify-content: center;
   }
   .buttonContainer button {
-    background: #fbc9be;
+    background: none;
     color: #695356;
     border: none;
     font-family: "Poppins", sans-serif;
@@ -22,6 +24,10 @@
     padding: 14px 0;
     margin: 5px;
     border-radius: 15px;
-    width: 10em;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

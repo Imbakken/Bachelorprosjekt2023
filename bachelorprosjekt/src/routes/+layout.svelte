@@ -3,6 +3,8 @@
   import { auth, db } from "../lib/firebase/firebase";
   import { getDoc, doc, setDoc } from "firebase/firestore";
   import { authStore } from "../store/store";
+  import Footer from "../components/Footer.svelte";
+
   //export const prerender = true;
   const nonAuthRoutes = ["/", "product"];
 
@@ -59,6 +61,8 @@
 <div class="mainContainer">
   <slot />
 </div>
+
+<Footer />
 
 <style>
   .mainContainer {

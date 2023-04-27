@@ -461,6 +461,7 @@
     margin: 5px;
     border-radius: 15px;
     width: 10em;
+    height: 3em;
   }
   .mainContainer button {
     border: none;
