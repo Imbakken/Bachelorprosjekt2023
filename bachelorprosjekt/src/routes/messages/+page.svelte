@@ -16,6 +16,8 @@
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
 
+  import Footer from "../../components/Footer.svelte";
+
   let message = {
     title: "",
     description: "",
@@ -254,6 +256,7 @@
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   </div>
 {/if}

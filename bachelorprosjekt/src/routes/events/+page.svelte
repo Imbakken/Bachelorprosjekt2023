@@ -17,7 +17,7 @@
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
 
-  import BackButton from "../../components/buttons/BackButton.svelte";
+  import Footer from "../../components/Footer.svelte";
   import PlaceIcon from "../../components/icons/PlaceIcon.svelte";
   import DateIcon from "../../components/icons/DateIcon.svelte";
 
@@ -326,6 +326,7 @@
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   </div>
 {/if}

@@ -17,6 +17,7 @@
   import { onMount, onDestroy } from "svelte";
   import { getAuth } from "firebase/auth";
 
+  import Footer from "../../components/Footer.svelte";
   import LogOut from "../../components/buttons/LogOut.svelte";
 
   // Import icons used in the component
@@ -247,6 +248,7 @@
           <span class="icon"><ArrowRight /></span>
         </button>
       </div>
+      <Footer />
     </div>
   </div>
 {/if}

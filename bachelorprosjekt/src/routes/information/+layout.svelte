@@ -1,5 +1,5 @@
 <script>
-  import BackButton from "../../components/buttons/BackButton.svelte";
+  import Footer from "../../components/Footer.svelte";
   import { authStore } from "../../store/store";
 </script>
 
@@ -9,6 +9,7 @@
       <div class="mainContainerParagraph">
         <slot />
       </div>
+      <Footer />
     </div>
   </div>
 {/if}
