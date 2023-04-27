@@ -1,17 +1,17 @@
 {
     "name": "Heimat studentbolig app",
     "short_name": "Heimat",
-    "description": "Dette er en app for de som bor i studentbolig.",
-    "icons": [
-      {
-        "src": "/logo/Heimat.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ],
+    "description": "Heimat er en app som gjør at du kan holde full oversikt over hva som skjer i boligen din, planlegge hverdagen og bli kjent med andre beboere",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff"
+    "background_color": "#FEFAEF",
+    "theme_color": "#FEFAEF",
+    "icons": [
+      {
+        "src": "/AppLogo.jpg",
+        "sizes": "512x512",
+        "type": "image/jpg"
+      }
+    ]
   }
   
