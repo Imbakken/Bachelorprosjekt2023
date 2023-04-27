@@ -277,21 +277,20 @@
     position: relative;
     padding-top: 50px;
   }
+  /*Main container header styles*/
   .mainContainerHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
   }
   .mainContainerHeader Button {
     background: #fbc9be;
     color: #695356;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
     text-decoration: none;
     padding: 5px;
-    margin: 2px;
+    margin: 0.5em 0;
     border-radius: 5px;
-    width: 8em;
+    width: 100%;
   }
   .mainContainerContent {
     margin: 0 auto;

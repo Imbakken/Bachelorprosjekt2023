@@ -166,9 +166,9 @@
     selectedEvent = currentEvent;
   };
 
-  function scrollToDetails() {
-    const detailsSection = document.getElementById("details");
-    detailsSection.scrollIntoView({ behavior: "smooth" });
+  function scrollTo() {
+    const formSection = document.getElementById("mainForm");
+    formSection.scrollIntoView({ behavior: "smooth" });
   }
 </script>
 
@@ -372,19 +372,17 @@
   /*Main container header styles*/
   .mainContainerHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
   }
   .mainContainerHeader Button {
     background: #fbc9be;
     color: #695356;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
     text-decoration: none;
     padding: 5px;
-    margin: 2px;
+    margin: 0.5em 0;
     border-radius: 5px;
-    width: 8em;
+    width: 100%;
   }
 
   /* Main container form styles */
@@ -397,7 +395,7 @@
   textarea,
   input[type="datetime-local"] {
     background: #fbc9be;
-    color: #695356;
+    color: #000;
     border: none;
     border-radius: 15px;
     display: block;
@@ -421,7 +419,7 @@
   }
 
   .formLabel {
-    font-size: 0.6em;
+    font-size: 0.7em;
     margin-bottom: 5px;
   }
 
