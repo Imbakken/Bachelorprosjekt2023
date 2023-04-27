@@ -16,9 +16,6 @@
   import Toastify from "toastify-js";
   import { onMount } from "svelte";
 
-  import BackButton from "../../components/buttons/BackButton.svelte";
-  import DateIcon from "../../components/icons/DateIcon.svelte";
-
   let message = {
     title: "",
     description: "",
@@ -181,7 +178,7 @@
                     >
                   </p>
                 </div>
-                <p>Skrevet av {message.author}</p>
+                <p>Skrevet av <strong>{message.author}</strong></p>
                 <p class="larger">{message.description}</p>
               </div>
               <div class="messageCardButtons">
@@ -256,7 +253,6 @@
             {/if}
           </div>
         </form>
-        <BackButton />
       </div>
     </div>
   </div>
@@ -267,9 +263,6 @@
   h2 {
     padding-top: 30px;
     margin-bottom: 5px;
-  }
-  h3 {
-    font-size: 1.6em;
   }
 
   /* General styles */
@@ -298,13 +291,14 @@
     padding: 5px;
     margin: 2px;
     border-radius: 5px;
-    width: 10em;
+    width: 8em;
   }
   .mainContainerContent {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 5em;
   }
   .buttonContainer {
     display: flex;

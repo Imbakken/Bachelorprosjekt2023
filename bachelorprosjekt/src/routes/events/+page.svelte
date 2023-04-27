@@ -176,24 +176,50 @@
 {#if $authStore}
   <div class="mainContainer">
     <div class="mainContainerRectangle">
-      <h1>Arrangementer</h1>
+      <div class="mainContainerHeader">
+        <h1>Arrangementer</h1>
+        <button
+          on:click={() => {
+            scrollTo();
+          }}
+        >
+          <p>Legg til et nytt arrangement</p>
+        </button>
+      </div>
       <div class="mainContainerContent">
         {#each events as event}
           <div class="eventCard">
             <div class="eventCardItem">
               <div class="eventCardText">
                 <h3>{event.title}</h3>
-                <div class="placeContainer">
-                  <PlaceIcon />
-                  <p>{event.place}</p>
-                </div>
                 <div class="dateContainer">
                   <DateIcon />
                   <p>
                     <strong>{event.date.toDate().toLocaleString()}</strong>
                   </p>
                 </div>
-                <p>{event.info}</p>
+                <div class="placeContainer">
+                  <PlaceIcon />
+                  <p>{event.place}</p>
+                </div>
+
+                {#if selectedEvent !== null}
+                  <div id="details">
+                    <p>
+                      <strong>Varighet:</strong>
+                      {selectedEvent.duration} timer
+                    </p>
+                    <p><strong>Sted:</strong> {selectedEvent.place}</p>
+                    <p><strong>Arrangør:</strong> {selectedEvent.organizer}</p>
+                    <p><strong>Info:</strong>{selectedEvent.info}</p>
+
+                    <div class="detailsButton">
+                      <button on:click={() => (selectedEvent = null)}
+                        >Lukk detaljer</button
+                      >
+                    </div>
+                  </div>
+                {/if}
               </div>
               <div class="eventCardButtons">
                 {#if canEdit(event.createdBy)}
@@ -207,7 +233,6 @@
                 <button
                   on:click={() => {
                     showEventDetails(event);
-                    scrollToDetails();
                   }}
                 >
                   <p>Detaljer</p>
@@ -216,22 +241,7 @@
             </div>
           </div>
         {/each}
-        {#if selectedEvent !== null}
-          <div id="details">
-            <h3>{selectedEvent.title}</h3>
-            <p>{selectedEvent.info}</p>
-            <p>
-              <strong>Dato og klokkeslett:</strong>
-              {selectedEvent.date.toDate().toLocaleString()}
-            </p>
-            <p><strong>Varighet:</strong> {selectedEvent.duration} timer</p>
-            <p><strong>Sted:</strong> {selectedEvent.place}</p>
-            <p><strong>Arrangør:</strong> {selectedEvent.organizer}</p>
-            <div class="detailsButton">
-              <button on:click={() => (selectedEvent = null)}>Close</button>
-            </div>
-          </div>
-        {/if}
+
         <form
           on:submit|preventDefault={handleSubmit}
           id="mainForm"
@@ -251,7 +261,7 @@
           <div class="date">
             <label for="date" class="dateLabel">Dato og klokkeslett</label>
             <p class="formLabel">
-              Husk å legge til dato og klokkeslett når du skal endre.
+              Husk å legge til dato og klokkeslett, også når du skal endre.
             </p>
             <input
               type="datetime-local"
@@ -315,7 +325,6 @@
             {/if}
           </div>
         </form>
-        <BackButton />
       </div>
     </div>
   </div>
@@ -323,14 +332,9 @@
 
 <style>
   /* Heading styles */
-  h1 {
-    padding-bottom: 30px;
-  }
   h2 {
-    padding: 30px 0 30px 0;
-  }
-  h3 {
-    font-size: 1.5em;
+    padding-top: 30px;
+    margin-bottom: 5px;
   }
 
   /* Main container styles */
@@ -363,7 +367,24 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin-bottom: 5em;
+  }
+  /*Main container header styles*/
+  .mainContainerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mainContainerHeader Button {
+    background: #fbc9be;
+    color: #695356;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    text-decoration: none;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
+    width: 8em;
   }
 
   /* Main container form styles */
@@ -400,7 +421,7 @@
   }
 
   .formLabel {
-    font-size: 0.7em;
+    font-size: 0.6em;
     margin-bottom: 5px;
   }
 
@@ -440,10 +461,12 @@
   .placeContainer {
     display: flex;
     align-items: center;
+    margin: 2px 0;
   }
   .dateContainer {
     display: flex;
     align-items: center;
+    margin: 2px 0;
   }
 
   /* Button styles */
@@ -472,8 +495,6 @@
   #details {
     background: #fbc9be;
     border-radius: 15px;
-    margin: 10px;
-    padding: 10px;
     width: 100%;
   }
   #details p,
@@ -482,14 +503,14 @@
   }
 
   #details button {
-    background: #fefaef;
+    background: none;
     color: #695356;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
     margin: 2px;
     padding: 5px;
-    text-decoration: none;
+    text-decoration: underline;
     width: 8em;
   }
 

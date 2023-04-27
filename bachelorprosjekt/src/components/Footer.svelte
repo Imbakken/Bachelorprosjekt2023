@@ -13,7 +13,6 @@
     bottom: 0;
     width: 100%;
     background-color: #fbcec3;
-    color: white;
     text-align: center;
   }
 </style>
