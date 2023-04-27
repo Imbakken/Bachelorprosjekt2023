@@ -22,6 +22,6 @@
     margin: 2px;
     border-radius: 5px;
     border: none;
-    width: 10em;
+    width: 8em;
   }
 </style>
