@@ -336,6 +336,7 @@
   h2 {
     padding-top: 30px;
     margin-bottom: 5px;
+    font-size: 1.4em;
   }
 
   /* Main container styles */
@@ -380,7 +381,7 @@
     color: #695356;
     font-family: "Poppins", sans-serif;
     text-decoration: none;
-    padding: 5px;
+    padding: 1em;
     margin: 0.5em 0;
     border-radius: 5px;
     width: 100%;
@@ -397,12 +398,19 @@
   input[type="datetime-local"] {
     background: #fbc9be;
     color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8;
     border: none;
     border-radius: 15px;
     display: block;
     padding: 15px;
     width: 100%;
     min-height: 3.5em;
+  }
+
+  .mainContainerForm label {
+    font-size: 1.2em;
+    margin: 0.5em 0;
   }
 
   .datetime-input {

@@ -128,7 +128,7 @@
           <h1>Hei {name}</h1>
           <LogOut />
         </div>
-        <h2>Dette må du få med deg</h2>
+        <h2>Beskjeder du må få med deg</h2>
         <div class="mainContainerPartContent">
           {#each messages as message}
             <div class="mainCard">
@@ -154,7 +154,7 @@
           <a href="/messages">Flere beskjeder</a>
         </div>
 
-        <h2>Dette skjer de kommende dagene</h2>
+        <h2>Arrangementer de kommende dagene</h2>
 
         <div class="mainContainerPartContent">
           {#each events as event}
