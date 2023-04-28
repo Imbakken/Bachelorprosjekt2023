@@ -58,6 +58,9 @@
     <p>
       <a href="/nouser">Har du ikke bruker?</a>
     </p>
+    <p>
+      <a href="/about">Mer om prosjektet</a>
+    </p>
   </div>
 </div>
 
@@ -144,7 +147,6 @@
   }
   .options p a {
     color: #695356;
-    text-decoration: none;
   }
   .options p a:hover {
     font-weight: bold;

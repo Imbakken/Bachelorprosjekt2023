@@ -19,30 +19,27 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
+    padding-top: 6em;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../../assets/backgroundapp/bakgrunnIkkeBruker2.jpg");
+    background-image: url("../../assets/backgroundapp/landingPage.jpg");
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     overflow: scroll;
   }
   .textContainer {
     width: 85%;
     margin: 0 auto;
-    color: #000;
-    text-align: center;
+    color: #695356;
   }
   h1 {
     font-family: "Comfortaa", cursive;
-    margin: 10px;
   }
   .linkContainer {
     padding-top: 10px;
   }
   .linkContainer p a {
-    color: #000;
+    color: #695356;
   }
   .linkContainer p a:hover {
     font-weight: bold;

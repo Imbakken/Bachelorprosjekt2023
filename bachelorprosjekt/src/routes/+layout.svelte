@@ -17,7 +17,7 @@
         return;
       }
 
-      if (user && currentPath === "/login") {
+      if (user && currentPath === "/") {
         window.location.href = "/dashboard";
         return;
       }
