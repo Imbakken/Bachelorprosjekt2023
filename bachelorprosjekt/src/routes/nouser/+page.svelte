@@ -22,7 +22,7 @@
     padding-top: 6em;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url("../../assets/backgroundapp/landingPage.jpg");
+    background-image: url("/backgroundapp/landingPage.jpg");
     display: flex;
     flex-direction: column;
     overflow: scroll;
@@ -53,7 +53,6 @@
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
-      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop5.jpg");
     }
   }
 </style>

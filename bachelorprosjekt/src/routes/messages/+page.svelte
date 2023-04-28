@@ -275,7 +275,7 @@
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background-image: url("../../assets/backgroundapp/bakgrunnBeskjeder.jpg");
+    background-image: url("/backgroundapp/bakgrunnBeskjeder.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -430,7 +430,7 @@
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
-      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop3.jpg");
+      background-image: url("/backgrounddesktop/BackgroundDesktop3.jpg");
     }
   }
 </style>

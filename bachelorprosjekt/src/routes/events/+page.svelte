@@ -341,7 +341,7 @@
 
   /* Main container styles */
   .mainContainer {
-    background-image: url("../../assets/backgroundapp/bakgrunnKalender.jpg");
+    background-image: url("/backgroundapp/bakgrunnKalender.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 auto;
@@ -548,7 +548,7 @@
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
-      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop4.jpg");
+      background-image: url("/backgrounddesktop/BackgroundDesktop4.jpg");
     }
   }
 </style>

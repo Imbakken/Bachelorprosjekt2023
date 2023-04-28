@@ -62,7 +62,6 @@
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
-      background-image: url("../../assets/backgrounddesktop/BackgroundDesktop5.jpg");
     }
   }
 </style>

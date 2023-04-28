@@ -3,10 +3,10 @@ import { init } from '../serverless.js';
 export const handler = init({
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["favicon.png","logo/Heimat.png","manifest.json","service-worker.js"]),
-	mimeTypes: {".png":"image/png",".json":"application/json"},
+	assets: new Set(["backgroundapp/bakgrunnBeskjeder.jpg","backgroundapp/bakgrunnDashboard.jpg","backgroundapp/BakgrunnIkkeBruker2.jpg","backgroundapp/bakgrunnInfo.jpg","backgroundapp/bakgrunnKalender.jpg","backgroundapp/landingPage.jpg","backgrounddesktop/BackgroundDesktop1.jpg","backgrounddesktop/BackgroundDesktop2.jpg","backgrounddesktop/BackgroundDesktop3.jpg","backgrounddesktop/BackgroundDesktop4.jpg","backgrounddesktop/BackgroundDesktop5.jpg","favicon.png","logo/AppLogo.jpg","logo/AppLogo.png","logo/Heimat.png","logo/icon-128x128.png","logo/icon-144x144.png","logo/icon-152x152.png","logo/icon-192x192.png","logo/icon-384x384.png","logo/icon-48x48.png","logo/icon-512x512.png","logo/icon-72x72.png","logo/icon-96x96.png","manifest.json","service-worker.js"]),
+	mimeTypes: {".jpg":"image/jpeg",".png":"image/png",".json":"application/json"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.090a738a.js","imports":["_app/immutable/entry/start.090a738a.js","_app/immutable/chunks/index.317fa1c7.js","_app/immutable/chunks/singletons.a904113f.js","_app/immutable/chunks/index.98f42e13.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.35d1acf6.js","imports":["_app/immutable/entry/app.35d1acf6.js","_app/immutable/chunks/index.317fa1c7.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.36d98b1b.js","imports":["_app/immutable/entry/start.36d98b1b.js","_app/immutable/chunks/index.317fa1c7.js","_app/immutable/chunks/singletons.9793a473.js","_app/immutable/chunks/index.98f42e13.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.6a289dc6.js","imports":["_app/immutable/entry/app.6a289dc6.js","_app/immutable/chunks/index.317fa1c7.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('../server/nodes/0.js'),
 			() => import('../server/nodes/1.js'),
@@ -34,8 +34,8 @@ export const handler = init({
 				endpoint: null
 			},
 			{
-				id: "/addevent",
-				pattern: /^\/addevent\/?$/,
+				id: "/about",
+				pattern: /^\/about\/?$/,
 				params: [],
 				page: { layouts: [0], errors: [1], leaf: 4 },
 				endpoint: null

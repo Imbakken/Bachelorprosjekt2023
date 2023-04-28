@@ -134,7 +134,7 @@ const options = {
   root: Root,
   service_worker: true,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n\n<head>\n	<meta charset="utf-8" />\n	<link rel="icon" href="' + assets2 + '/favicon.png" />\n	<link rel="manifest" href="/manifest.json">\n	<link rel="preconnect" href="https://fonts.googleapis.com">\n	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n	<link\n		href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Gloock&family=Poppins:ital,wght@0,400;0,600;1,400&display=swap"\n		rel="stylesheet">\n	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"\n		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="\n		crossorigin="anonymous" referrerpolicy="no-referrer" />\n	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">\n	' + head + `
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n\n<head>\n	<meta charset="utf-8" />\n	<link rel="icon" href="' + assets2 + '/logo/Heimat.png" />\n	<link rel="manifest" href="/manifest.json">\n	<link rel="preconnect" href="https://fonts.googleapis.com">\n	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n	<link\n		href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Gloock&family=Poppins:ital,wght@0,400;0,600;1,400&display=swap"\n		rel="stylesheet">\n	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"\n		integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="\n		crossorigin="anonymous" referrerpolicy="no-referrer" />\n	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">\n	' + head + `
 	<style>
 		* {
 			box-sizing: border-box;
@@ -151,7 +151,8 @@ const options = {
 		h1 {
 			font-size: 1.8em;
 			font-weight: normal;
-			font-family: "Comfortaa", cursive;
+			font-family: "Comfortaa", sans-serif;
+			margin: 0.5em 0;
 		}
 
 		h2 {
@@ -160,17 +161,17 @@ const options = {
 		}
 
 		h3 {
-			font-size: 1.0em;
+			font-size: 1.2em;
 			font-weight: bold;
 		}
 
 		p {
-			font-size: 0.9em;
+			font-size: 1em;
 			font-weight: normal;
 		}
 
 		ul {
-			font-size: 0.9em;
+			font-size: 1em;
 			font-weight: normal;
 		}
 	</style>
@@ -238,7 +239,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "8cpu7s"
+  version_hash: "4kwk1i"
 };
 function get_hooks() {
   return {};
