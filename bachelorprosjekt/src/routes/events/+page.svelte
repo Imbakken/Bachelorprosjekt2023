@@ -381,6 +381,7 @@
     color: #695356;
     font-family: "Poppins", sans-serif;
     text-decoration: none;
+    font-size: 1em;
     padding: 1em;
     margin: 0.5em 0;
     border-radius: 5px;
@@ -399,7 +400,7 @@
     background: #fbc9be;
     color: #000;
     font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
+    font-size: 1em;
     border: none;
     border-radius: 15px;
     display: block;
