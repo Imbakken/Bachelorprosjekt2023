@@ -48,11 +48,19 @@
   @media (min-width: 430px) and (max-width: 1200px) {
     .mainContainer {
       max-width: 1200px;
+      background: #fefaef;
+    }
+    .textContainer {
+      width: 60%;
     }
   }
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
+      background: #fefaef;
+    }
+    .textContainer {
+      width: 60%;
     }
   }
 </style>

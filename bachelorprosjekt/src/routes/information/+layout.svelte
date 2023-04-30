@@ -49,11 +49,17 @@
       max-width: 1200px;
       width: 100%;
     }
+    .mainContainerParagraph {
+      margin: 5em;
+    }
   }
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
       background-image: url("/backgrounddesktop/BackgroundDesktop2.jpg");
+    }
+    .mainContainerParagraph {
+      margin: 5em;
     }
   }
 </style>

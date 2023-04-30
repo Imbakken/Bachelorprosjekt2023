@@ -426,12 +426,24 @@
     .messageCardText {
       width: 80%;
     }
+    .mainContainerContent {
+      padding: 2em 10em;
+    }
+    .mainContainerHeader {
+      padding: 2em 10em;
+    }
   }
 
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
       background-image: url("/backgrounddesktop/BackgroundDesktop3.jpg");
+    }
+    .mainContainerContent {
+      padding: 2em 10em;
+    }
+    .mainContainerHeader {
+      padding: 2em 10em;
     }
   }
 </style>

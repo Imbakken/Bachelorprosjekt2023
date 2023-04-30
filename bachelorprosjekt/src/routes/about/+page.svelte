@@ -58,10 +58,16 @@
     .mainContainer {
       max-width: 1200px;
     }
+    .textContainer {
+      width: 60%;
+    }
   }
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
+    }
+    .textContainer {
+      width: 60%;
     }
   }
 </style>

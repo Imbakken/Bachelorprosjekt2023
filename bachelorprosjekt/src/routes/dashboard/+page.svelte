@@ -387,6 +387,9 @@
     .scrollMenu {
       justify-content: center;
     }
+    .mainContainerContent {
+      padding: 2em 10em;
+    }
   }
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
@@ -395,6 +398,9 @@
     }
     .scrollMenu {
       justify-content: center;
+    }
+    .mainContainerContent {
+      padding: 2em 10em;
     }
   }
 </style>
