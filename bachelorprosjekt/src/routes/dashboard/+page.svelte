@@ -68,8 +68,8 @@
 
       const messagesQuery = query(
         collection(db, "messages"),
-        where("date", ">=", Timestamp.fromDate(today)),
-        orderBy("date", "asc"),
+        where("createdAt", ">=", Timestamp.fromDate(today)),
+        orderBy("createdAt", "asc"),
         limit(2)
       );
 
@@ -138,7 +138,9 @@
                   <div class="dateContainer">
                     <DateIcon />
                     <p>
-                      <strong>{message.date.toDate().toLocaleString()}</strong>
+                      <strong
+                        >{message.createdAt.toDate().toLocaleString()}</strong
+                      >
                     </p>
                   </div>
                   <p class="small">
