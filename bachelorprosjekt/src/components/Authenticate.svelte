@@ -38,10 +38,10 @@
       </p>
     {/if}
     <label>
-      <input bind:value={email} type="email" placeholder="Email" />
+      <input bind:value={email} type="email" placeholder="E-post" />
     </label>
     <label>
-      <input bind:value={password} type="password" placeholder="Password" />
+      <input bind:value={password} type="password" placeholder="Passord" />
     </label>
 
     <div class="submitBtn">
