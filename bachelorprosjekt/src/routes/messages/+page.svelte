@@ -173,13 +173,9 @@
             <div class="messageCardItem">
               <div class="messageCardText">
                 <h3>{message.title}</h3>
-                <div class="dateContainer">
-                  <p>
-                    <strong
-                      >{message.createdAt.toDate().toLocaleString()}</strong
-                    >
-                  </p>
-                </div>
+                <p>
+                  <strong>{message.createdAt.toDate().toLocaleString()}</strong>
+                </p>
                 <p>Skrevet av <strong>{message.author}</strong></p>
                 <p class="larger">{message.description}</p>
               </div>
@@ -355,11 +351,6 @@
   .error {
     margin: 15px;
     font-size: 0.8em;
-  }
-
-  .dateContainer {
-    display: flex;
-    align-items: center;
   }
   .larger {
     margin: 0.5em 0;

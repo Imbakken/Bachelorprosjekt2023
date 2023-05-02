@@ -1,11 +1,13 @@
 <script>
   import { authHandlers } from "../store/store";
+
   let email = "";
   let password = "";
   let confirmPass = "";
   let error = false;
   let noUser = false;
   let authenticating = false;
+
   async function handleAuthenticate() {
     if (authenticating) {
       return;

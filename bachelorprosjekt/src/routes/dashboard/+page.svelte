@@ -125,7 +125,7 @@
     <div class="mainContainerRectangle">
       <div class="mainContainerContent">
         <div class="mainContainerHeader">
-          <h1>Hei {name}</h1>
+          <h1>Hei <strong>{name}</strong></h1>
           <LogOut />
         </div>
         <h2>Beskjeder du må få med deg</h2>
@@ -135,14 +135,11 @@
               <div class="mainCardItem">
                 <div class="mainCardText">
                   <h3>{message.title}</h3>
-                  <div class="dateContainer">
-                    <DateIcon />
-                    <p>
-                      <strong
-                        >{message.createdAt.toDate().toLocaleString()}</strong
-                      >
-                    </p>
-                  </div>
+                  <p>
+                    <strong
+                      >{message.createdAt.toDate().toLocaleString()}</strong
+                    >
+                  </p>
                   <p class="small">
                     Skrevet av <strong>{message.author}</strong>
                   </p>
@@ -256,6 +253,10 @@
 {/if}
 
 <style>
+  h2 {
+    font-size: 1em;
+  }
+
   .mainContainer {
     min-height: 100vh;
     padding-top: 50px;
