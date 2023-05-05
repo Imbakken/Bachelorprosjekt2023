@@ -1,3 +1,7 @@
+<script>
+  import ArrowRight from "../../components/icons/ArrowRight.svelte";
+</script>
+
 <div class="mainContainer">
   <div class="mainContainerContainer">
     <div class="textContainer">
@@ -15,9 +19,11 @@
         nødvendig informasjon fra utleier.
       </p>
       <div class="linkContainer">
-        <p>
-          <a href="/">Kom igang</a>
-        </p>
+        <div class="arrowContainer">
+          <a class="btn" aria-label="go to login" href="/"
+            >Kom igang<ArrowRight /></a
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -26,32 +32,36 @@
 <style>
   .mainContainer {
     min-height: 100vh;
+    padding-top: 50px;
     width: 100%;
     max-width: 430px;
     margin: 0 auto;
-    background: #fefaef;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 5em;
-    align-items: center;
-    overflow: scroll;
+    background-image: url("/backgrounddesktop/BackgroundInfo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
   }
 
-  .textContainer {
-    width: 85%;
-    margin: 0 auto;
+  .mainContainerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
     color: #695356;
-  }
-  h1 {
-    font-family: "Comfortaa", cursive;
-    margin: 0.5em 0;
   }
   .linkContainer {
     padding-top: 10px;
   }
-  .linkContainer p a {
+  .linkContainer a {
     color: #695356;
+  }
+  .linkContainer a:hover {
+    font-weight: bold;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {

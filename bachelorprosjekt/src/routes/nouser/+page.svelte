@@ -1,14 +1,23 @@
+<script>
+  import ArrowLeft from "../../components/icons/ArrowLeft.svelte";
+</script>
+
 <div class="mainContainer">
-  <div class="textContainer">
-    <h1>Har du ikke bruker?</h1>
-    <p>
-      Denne appen er kun for eksisterende brukere, som bor i en studentbolig
-      tilknyttet oss. Vennligst gå inn på hjemmesiden vår for å lage en bruker.
-    </p>
-    <div class="linkContainer">
+  <div class="mainContainerContainer">
+    <div class="textContainer">
+      <h1>Har du ikke bruker?</h1>
       <p>
-        <a href="/">Tilbake til innlogging</a>
+        Denne appen er kun for eksisterende brukere, som bor i en studentbolig
+        tilknyttet oss. Vennligst gå inn på hjemmesiden vår for å lage en
+        bruker.
       </p>
+      <div class="linkContainer">
+        <div class="arrowContainer">
+          <a class="btn" aria-label="Back to login" href="/"
+            ><ArrowLeft />Tilbake til innlogging</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -27,9 +36,12 @@
     flex-direction: column;
     overflow: scroll;
   }
-  .textContainer {
-    width: 85%;
-    margin: 0 auto;
+  .mainContainerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10%;
     color: #695356;
   }
   h1 {
@@ -38,17 +50,21 @@
   .linkContainer {
     padding-top: 10px;
   }
-  .linkContainer p a {
+  .linkContainer a {
     color: #695356;
   }
-  .linkContainer p a:hover {
+  .linkContainer a:hover {
     font-weight: bold;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {
     .mainContainer {
       max-width: 1200px;
-      background: #fefaef;
+      background-image: url("/backgroundapp/BackgroundIpad.jpg");
     }
     .textContainer {
       width: 60%;
@@ -57,7 +73,7 @@
   @media (min-width: 1200px) and (max-width: 1920px) {
     .mainContainer {
       max-width: 1920px;
-      background: #fefaef;
+      background-image: url("/backgrounddesktop/BackgroundInfo.jpg");
     }
     .textContainer {
       width: 60%;

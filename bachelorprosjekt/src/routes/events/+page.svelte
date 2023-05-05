@@ -185,6 +185,7 @@
       <div class="mainContainerHeader">
         <h1>Arrangementer</h1>
         <button
+          aria-label="Add arangement"
           on:click={() => {
             scrollTo();
           }}
@@ -229,14 +230,15 @@
               </div>
               <div class="eventCardButtons">
                 {#if canEdit(event.createdBy)}
-                  <button on:click={editEvent(event)}>
+                  <button aria-label="Change" on:click={editEvent(event)}>
                     <p>Endre</p>
                   </button>
-                  <button on:click={removeEvent(event.id)}>
+                  <button aria-label="Delete" on:click={removeEvent(event.id)}>
                     <p>Slett</p>
                   </button>
                 {/if}
                 <button
+                  aria-label="Details"
                   on:click={() => {
                     showEventDetails(event);
                   }}
@@ -255,7 +257,8 @@
         >
           <h2>Legg til arrangement</h2>
           <div class="titleContainer">
-            <label for="title" class="titleLabel">Navn</label>
+            <label aria-label="title" for="title" class="titleLabel">Navn</label
+            >
             <input
               type="text"
               bind:value={event.title}
@@ -265,7 +268,9 @@
             />
           </div>
           <div class="date">
-            <label for="date" class="dateLabel">Dato og klokkeslett</label>
+            <label aria-label="date" for="date" class="dateLabel"
+              >Dato og klokkeslett</label
+            >
             <p class="formLabel">
               Husk å legge til dato og klokkeslett, også når du skal endre.
             </p>
@@ -277,7 +282,9 @@
           </div>
 
           <div class="duration">
-            <label for="duration" class="durationLabel">Varighet</label>
+            <label aria-label="duration" for="duration" class="durationLabel"
+              >Varighet</label
+            >
             <input
               type="number"
               bind:value={event.duration}
@@ -286,7 +293,8 @@
             />
           </div>
           <div class="place">
-            <label for="place" class="placeLabel">Sted</label>
+            <label aria-label="place" for="place" class="placeLabel">Sted</label
+            >
             <input
               type="text"
               bind:value={event.place}
@@ -295,7 +303,9 @@
             />
           </div>
           <div class="organizerContainer">
-            <label for="organizer" class="organizerLabel">Arrangør</label>
+            <label aria-label="organizer" for="organizer" class="organizerLabel"
+              >Arrangør</label
+            >
             <input
               type="text"
               bind:value={event.organizer}
@@ -304,7 +314,7 @@
             />
           </div>
           <div class="infoContainer">
-            <label for="info" class="infoLabel">Info</label>
+            <label aria-label="Info" for="info" class="infoLabel">Info</label>
             <textarea
               bind:value={event.info}
               rows="3"
@@ -321,13 +331,21 @@
             </div>
           {/if}
           <div class="buttonContainer">
-            <button class="saveButton" disabled={!event.title}>
+            <button
+              aria-label="Save or update"
+              class="saveButton"
+              disabled={!event.title}
+            >
               <span class="ms-2">
                 {#if !editStatus}Lagre{:else}Oppdater{/if}
               </span>
             </button>
             {#if editStatus}
-              <button on:click={onCancel} class="cancelButton">Avbryt</button>
+              <button
+                aria-label="cancel"
+                on:click={onCancel}
+                class="cancelButton">Avbryt</button
+              >
             {/if}
           </div>
         </form>
@@ -428,7 +446,7 @@
     font-size: 1.2em;
     margin: 0.5em 0;
   }
-  /*
+
   .datetime-input {
     border: none;
     box-sizing: border-box;
@@ -440,7 +458,7 @@
     -moz-appearance: textfield;
     -webkit-appearance: none;
   }
-*/
+
   .formLabel {
     font-size: 0.8em;
     margin-bottom: 5px;

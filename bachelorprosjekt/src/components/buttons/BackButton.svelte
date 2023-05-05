@@ -7,7 +7,9 @@
 </script>
 
 <div class="buttonContainer">
-  <button class="btn" on:click={goBack}><ArrowLeft />Tilbake</button>
+  <button class="btn" aria-label="Go back" on:click={goBack}
+    ><ArrowLeft />Tilbake</button
+  >
 </div>
 
 <style>

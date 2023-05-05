@@ -31,7 +31,7 @@
 
 <div class="authContainer">
   <div class="logoContainer">
-    <img src="/logo/Heimat.png" alt="Heimat logo" />
+    <img src="/logo/Heimat.png" alt="Heimat logo" aria-label="App logo" />
   </div>
   <form>
     {#if error}
@@ -40,10 +40,20 @@
       </p>
     {/if}
     <label>
-      <input bind:value={email} type="email" placeholder="E-post" />
+      <input
+        bind:value={email}
+        type="email"
+        aria-label="email"
+        placeholder="E-post"
+      />
     </label>
     <label>
-      <input bind:value={password} type="password" placeholder="Passord" />
+      <input
+        bind:value={password}
+        type="password"
+        aria-label="password"
+        placeholder="Passord"
+      />
     </label>
 
     <div class="submitBtn">

@@ -157,6 +157,7 @@
       <div class="mainContainerHeader">
         <h1>Beskjeder</h1>
         <button
+          aria-label="Add a new message"
           on:click={() => {
             scrollTo();
           }}
@@ -180,10 +181,13 @@
               </div>
               <div class="messageCardButtons">
                 {#if canEdit(message.createdBy)}
-                  <button on:click={editMessage(message)}>
+                  <button aria-label="Change" on:click={editMessage(message)}>
                     <p>Endre</p>
                   </button>
-                  <button on:click={removeMessage(message.id)}>
+                  <button
+                    aria-label="Delete"
+                    on:click={removeMessage(message.id)}
+                  >
                     <p>Slett</p>
                   </button>
                 {/if}
@@ -200,7 +204,9 @@
           <h2>Legg til en ny beskjed</h2>
           <p>Beskjeden blir liggende ute i 2 uker.</p>
           <div class="titleContainer">
-            <label for="title" class="titleLabel">Tittel</label>
+            <label for="title" aria-label="Title" class="titleLabel"
+              >Tittel</label
+            >
             <input
               type="text"
               bind:value={message.title}
@@ -211,7 +217,11 @@
           </div>
 
           <div class="descriptionContainer">
-            <label for="description" class="descriptionLabel">Beskjed</label>
+            <label
+              for="description"
+              aria-label="Message"
+              class="descriptionLabel">Beskjed</label
+            >
             <textarea
               bind:value={message.description}
               rows="3"
@@ -221,7 +231,9 @@
           </div>
 
           <div class="authorContainer">
-            <label for="author" class="authorLabel">Skrevet av</label>
+            <label for="author" aria-label="Written by" class="authorLabel"
+              >Skrevet av</label
+            >
             <input
               type="text"
               bind:value={message.author}
@@ -239,7 +251,11 @@
             </div>
           {/if}
           <div class="buttonContainer">
-            <button class="saveButton" disabled={!message.title}>
+            <button
+              class="saveButton"
+              aria-label="Save or update button"
+              disabled={!message.title}
+            >
               <span class="ms-2">
                 {#if !editStatus}Lagre{:else}Oppdater{/if}
               </span>

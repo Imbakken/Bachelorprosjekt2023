@@ -153,7 +153,7 @@
           {/each}
         </div>
         <div class="mainContainerLink">
-          <a href="/messages">Flere beskjeder</a>
+          <a aria-label="more messages" href="/messages">Flere beskjeder</a>
         </div>
 
         <h2>Arrangementer de kommende dagene</h2>
@@ -180,7 +180,7 @@
           {/each}
         </div>
         <div class="mainContainerLink">
-          <a href="/events">Flere arrangementer</a>
+          <a aria-label="more events" href="/events">Flere arrangementer</a>
         </div>
         <h2>Nyttig informasjon</h2>
       </div>
