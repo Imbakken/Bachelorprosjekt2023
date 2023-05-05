@@ -414,13 +414,20 @@
     margin: 0.5em 0;
     width: 100%;
     min-height: 3.5em;
+    box-sizing: border-box;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
   }
 
   .mainContainerForm label {
     font-size: 1.2em;
     margin: 0.5em 0;
   }
-
+  /*
   .datetime-input {
     border: none;
     box-sizing: border-box;
@@ -432,7 +439,7 @@
     -moz-appearance: textfield;
     -webkit-appearance: none;
   }
-
+*/
   .formLabel {
     font-size: 0.8em;
     margin-bottom: 5px;
@@ -475,13 +482,13 @@
     display: flex;
     align-items: center;
     margin: 2px 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .dateContainer {
     display: flex;
     align-items: center;
     margin: 2px 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
   /* Button styles */

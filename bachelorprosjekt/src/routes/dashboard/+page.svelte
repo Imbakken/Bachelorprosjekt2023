@@ -312,16 +312,16 @@
     display: flex;
     align-items: center;
     margin: 2px 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .dateContainer {
     display: flex;
     align-items: center;
     margin: 2px 0;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .small {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .mainContainerLink {
     display: flex;

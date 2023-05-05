@@ -352,7 +352,7 @@
     font-size: 0.8em;
   }
   .small {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
   /* Form styles */
@@ -374,6 +374,13 @@
     margin: 0.5em 0;
     width: 100%;
     min-height: 3.5em;
+    box-sizing: border-box;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    -moz-appearance: textfield;
+    -webkit-appearance: none;
   }
   .mainContainerForm label {
     font-size: 1.2em;
