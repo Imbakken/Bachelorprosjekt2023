@@ -382,6 +382,11 @@
     -moz-appearance: textfield;
     -webkit-appearance: none;
   }
+  .mainContainerForm input,
+  textarea::placeholder {
+    opacity: 0.5;
+    color: #695356;
+  }
   .mainContainerForm label {
     font-size: 1.2em;
     margin: 0.5em 0;
