@@ -3,7 +3,7 @@
 </script>
 
 <div class="buttonContainer">
-  <button on:click={authHandlers.logout}>Logg ut</button>
+  <button aria-label="Log out" on:click={authHandlers.logout}>Logg ut</button>
 </div>
 
 <style>
