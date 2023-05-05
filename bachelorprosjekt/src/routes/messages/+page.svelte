@@ -32,16 +32,13 @@
 
   onMount(async () => {
     const today = new Date();
-    const oneWeekAgo = new Date();
-    const oneWeekAhead = new Date();
-    oneWeekAgo.setDate(today.getDate() - 7); // subtract 7 days
-    oneWeekAhead.setDate(today.getDate() + 7); // add 7 days
+    const twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate(today.getDate() - 14); // subtract 7 days
 
     const q = query(
       collection(db, "messages"),
-      where("createdAt", ">=", Timestamp.fromDate(oneWeekAgo)),
-      where("createdAt", "<=", Timestamp.fromDate(oneWeekAhead)),
-      orderBy("createdAt", "asc")
+      where("createdAt", ">=", Timestamp.fromDate(twoWeeksAgo)),
+      orderBy("createdAt", "desc")
     );
 
     try {
@@ -173,11 +170,13 @@
             <div class="messageCardItem">
               <div class="messageCardText">
                 <h3>{message.title}</h3>
-                <p>
+                <p class="small">
                   <strong>{message.createdAt.toDate().toLocaleString()}</strong>
                 </p>
-                <p>Skrevet av <strong>{message.author}</strong></p>
-                <p class="larger">{message.description}</p>
+                <p class="small">
+                  Skrevet av <strong>{message.author}</strong>
+                </p>
+                <p>{message.description}</p>
               </div>
               <div class="messageCardButtons">
                 {#if canEdit(message.createdBy)}
@@ -290,7 +289,7 @@
     text-decoration: none;
     padding: 1em;
     margin: 0.5em 0;
-    border-radius: 5px;
+    border-radius: 15px;
     width: 100%;
   }
   .mainContainerContent {
@@ -352,9 +351,8 @@
     margin: 15px;
     font-size: 0.8em;
   }
-  .larger {
-    margin: 0.5em 0;
-    font-size: 1em;
+  .small {
+    font-size: 0.8em;
   }
 
   /* Form styles */
@@ -372,7 +370,8 @@
     border: none;
     border-radius: 15px;
     display: block;
-    padding: 15px;
+    padding: 1em;
+    margin: 0.5em 0;
     width: 100%;
     min-height: 3.5em;
   }
@@ -405,7 +404,6 @@
       max-width: 1200px;
       width: 100%;
     }
-
     .messageCardButtons {
       display: flex;
       flex-direction: column;
@@ -435,6 +433,17 @@
     }
     .mainContainerHeader {
       padding: 2em 10em;
+    }
+    .messageCardButtons {
+      display: flex;
+      flex-direction: column;
+    }
+    .messageCardItem {
+      display: flex;
+      flex-direction: row;
+    }
+    .messageCardText {
+      width: 80%;
     }
   }
 </style>

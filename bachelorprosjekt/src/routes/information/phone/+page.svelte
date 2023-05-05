@@ -8,16 +8,18 @@
       <a id="police" href="tel:112">112</a>
       <h2>Medisinsk nødtelefon</h2>
       <a id="health" href="tel:113">113</a>
+      <h2>Legevakt</h2>
+      <a href="tel:116117">116 117</a>
       <h2>Gjøvik taxi</h2>
       <a href="tel:04711">04711</a>
       <h2>Vakttelefon</h2>
-      <a href="tel:99999999">999 99 999</a>
+      <a href="tel:99999999">... .. ...</a>
       <h2>Vekter</h2>
-      <a href="tel:99999999">999 99 999</a>
+      <a href="tel:99999999">... .. ...</a>
       <h2>Vaktmester</h2>
-      <a href="tel:99999999">999 99 999</a>
+      <a href="tel:99999999">... .. ...</a>
       <h2>Studentboligens sentralbord</h2>
-      <p><a href="tel:99999999">999 99 999</a></p>
+      <p><a href="tel:99999999">... .. ...</a></p>
     </div>
   </div>
 </div>

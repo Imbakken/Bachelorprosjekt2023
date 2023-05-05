@@ -22,9 +22,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .mainContainerParagraph p {
-    margin: 10px 0;
-  }
-</style>

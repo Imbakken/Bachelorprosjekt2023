@@ -33,10 +33,6 @@
 
 <style>
   .mainContainerParagraph ul {
-    margin-top: 10px;
-    margin-left: 20px;
-  }
-  .mainContainerParagraph h1 {
-    margin-top: 10px;
+    margin-left: 1em;
   }
 </style>

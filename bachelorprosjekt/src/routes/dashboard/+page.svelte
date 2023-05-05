@@ -63,13 +63,16 @@
         }
       });
 
-      // Get messages that were posted today or later, sorted by date
+      // Get messages that were posted today or until 2 weeks ago, sorted by date
+
       const today = new Date();
+      const twoWeeksAgo = new Date();
+      twoWeeksAgo.setDate(today.getDate() - 14); // subtract 1 day
 
       const messagesQuery = query(
         collection(db, "messages"),
-        where("createdAt", ">=", Timestamp.fromDate(today)),
-        orderBy("createdAt", "asc"),
+        where("createdAt", ">=", Timestamp.fromDate(twoWeeksAgo)),
+        orderBy("createdAt", "desc"),
         limit(2)
       );
 
@@ -125,7 +128,7 @@
     <div class="mainContainerRectangle">
       <div class="mainContainerContent">
         <div class="mainContainerHeader">
-          <h1>Hei <strong>{name}</strong></h1>
+          <h1>Hei {name}</h1>
           <LogOut />
         </div>
         <h2>Beskjeder du må få med deg</h2>
@@ -135,7 +138,7 @@
               <div class="mainCardItem">
                 <div class="mainCardText">
                   <h3>{message.title}</h3>
-                  <p>
+                  <p class="small">
                     <strong
                       >{message.createdAt.toDate().toLocaleString()}</strong
                     >
@@ -256,7 +259,9 @@
   h2 {
     font-size: 1em;
   }
-
+  button {
+    cursor: pointer;
+  }
   .mainContainer {
     min-height: 100vh;
     padding-top: 50px;
@@ -278,13 +283,12 @@
     border-radius: 30px 30px 0 0;
     height: 75%;
     width: 100%;
-
     position: absolute;
     bottom: 0;
     overflow: scroll;
   }
   .mainContainerPartContent {
-    margin: 5px 0;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -330,11 +334,6 @@
   .mainContainerLink a:hover {
     font-weight: bold;
   }
-
-  .mainContainer button {
-    cursor: pointer;
-  }
-
   .scrollMenu {
     display: flex;
     align-items: center;
@@ -380,7 +379,6 @@
     height: 1em;
     border: none;
     background: none;
-    cursor: pointer;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {
@@ -395,6 +393,9 @@
     }
   }
   @media (min-width: 1200px) and (max-width: 1920px) {
+    h2 {
+      font-size: 1.2em;
+    }
     .mainContainer {
       max-width: 1920px;
       background-image: url("/backgrounddesktop/BackgroundDesktop1.jpg");
@@ -403,7 +404,14 @@
       justify-content: center;
     }
     .mainContainerContent {
-      padding: 2em 10em;
+      padding: 2em 12em;
+    }
+    .mainContainerPartContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      align-content: center;
     }
   }
 </style>

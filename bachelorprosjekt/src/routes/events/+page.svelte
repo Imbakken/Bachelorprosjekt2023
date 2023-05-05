@@ -163,7 +163,13 @@
 
   // Shows the event details
   const showEventDetails = (currentEvent) => {
-    selectedEvent = currentEvent;
+    if (selectedEvent === currentEvent) {
+      // deselect the event if it is already selected
+      selectedEvent = null;
+    } else {
+      // select the clicked event
+      selectedEvent = currentEvent;
+    }
   };
 
   function scrollTo() {
@@ -203,7 +209,7 @@
                   <p>{event.place}</p>
                 </div>
 
-                {#if selectedEvent !== null}
+                {#if selectedEvent === event}
                   <div id="details">
                     <p>
                       <strong>Varighet:</strong>
@@ -404,7 +410,8 @@
     border: none;
     border-radius: 15px;
     display: block;
-    padding: 15px;
+    padding: 1em;
+    margin: 0.5em 0;
     width: 100%;
     min-height: 3.5em;
   }
@@ -418,14 +425,12 @@
     border: none;
     box-sizing: border-box;
     outline: 0;
-    padding-left: 0.75rem;
     display: flex;
     justify-content: center;
     position: relative;
     width: 100%;
     -moz-appearance: textfield;
     -webkit-appearance: none;
-    margin: 0;
   }
 
   .formLabel {
@@ -470,11 +475,13 @@
     display: flex;
     align-items: center;
     margin: 2px 0;
+    font-size: 0.8em;
   }
   .dateContainer {
     display: flex;
     align-items: center;
     margin: 2px 0;
+    font-size: 0.8em;
   }
 
   /* Button styles */
@@ -532,7 +539,12 @@
       max-width: 1200px;
       width: 100%;
     }
-
+    .mainContainerContent {
+      padding: 2em 10em;
+    }
+    .mainContainerHeader {
+      padding: 2em 10em;
+    }
     .eventCardButtons {
       display: flex;
       flex-direction: column;
@@ -543,12 +555,6 @@
     }
     .eventCardText {
       width: 80%;
-    }
-    .mainContainerContent {
-      padding: 2em 10em;
-    }
-    .mainContainerHeader {
-      padding: 2em 10em;
     }
   }
 
@@ -562,6 +568,17 @@
     }
     .mainContainerHeader {
       padding: 2em 10em;
+    }
+    .eventCardButtons {
+      display: flex;
+      flex-direction: column;
+    }
+    .eventCardItem {
+      display: flex;
+      flex-direction: row;
+    }
+    .eventCardText {
+      width: 80%;
     }
   }
 </style>

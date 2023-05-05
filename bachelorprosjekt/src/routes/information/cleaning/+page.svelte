@@ -57,15 +57,10 @@
 </div>
 
 <style>
-  .mainContainerParagraph p,
-  ul {
-    margin: 10px 0;
-  }
-  .mainContainerParagraph h1,
   h2 {
-    margin-top: 10px;
+    margin: 0.5em 0;
   }
   .mainContainerParagraph ul {
-    margin-left: 20px;
+    margin-left: 1em;
   }
 </style>

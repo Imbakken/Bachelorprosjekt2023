@@ -35,7 +35,6 @@
 		"@capacitor/geolocation": "^4.1.0",
 		"eslint": "^8.36.0",
 		"firebase": "^9.17.2",
-		"goto": "^0.2.0",
 		"link": "^1.5.1",
 		"moment": "^2.29.4",
 		"svelte-preprocess": "^5.0.2",

@@ -45,8 +45,8 @@
 </div>
 
 <style>
-  .mainContainerParagraph p {
-    margin: 10px 0;
+  h2 {
+    margin: 0.5em 0;
   }
   .smallContainer {
     display: flex;
