@@ -374,19 +374,15 @@
     margin: 0.5em 0;
     width: 100%;
     min-height: 3.5em;
-    box-sizing: border-box;
-    outline: 0;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    -moz-appearance: textfield;
-    -webkit-appearance: none;
   }
-  .mainContainerForm input,
-  textarea::placeholder {
-    opacity: 0.5;
+  .mainContainerForm textarea::placeholder {
     color: #695356;
   }
+
+  .mainContainerForm input::placeholder {
+    color: #695356;
+  }
+
   .mainContainerForm label {
     font-size: 1.2em;
     margin: 0.5em 0;
