@@ -10,18 +10,20 @@
     updateDoc,
     query,
     getDocs,
+    getDoc,
+    getFirestore,
     where,
     Timestamp,
   } from "firebase/firestore";
   import Toastify from "toastify-js";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
+  import { getAuth } from "firebase/auth";
 
   import Footer from "../../components/Footer.svelte";
 
   let message = {
     title: "",
     description: "",
-    author: "",
   };
 
   let messages = [];
@@ -33,7 +35,7 @@
   onMount(async () => {
     const today = new Date();
     const twoWeeksAgo = new Date();
-    twoWeeksAgo.setDate(today.getDate() - 14); // subtract 7 days
+    twoWeeksAgo.setDate(today.getDate() - 14); // subtract 14 days
 
     const q = query(
       collection(db, "messages"),
@@ -52,23 +54,39 @@
     }
   });
 
-  // Add the message object to Firestore
-  const addMessage = async () => {
-    const currentUser = auth.currentUser;
-    try {
-      await addDoc(collection(db, "messages"), {
-        ...message,
-        createdAt: Timestamp.now(),
-        createdBy: currentUser.uid,
-      });
-      Toastify({
-        text: "New message created",
-      }).showToast();
-      location.reload(); // Refresh the page
-    } catch (err) {
-      console.log(err);
-      error = true;
-    }
+  const addMessage = async (message) => {
+    const auth = getAuth();
+    const db = getFirestore();
+
+    // Subscribe to changes in the authenticated user
+    auth.onAuthStateChanged(async (user) => {
+      let name = "";
+      if (user) {
+        const userDoc = doc(db, "users", user.uid);
+        const userSnapshot = await getDoc(userDoc);
+
+        if (userSnapshot.exists()) {
+          // If the user document exists, get the user's name
+          name = userSnapshot.data().name;
+        }
+      }
+      const currentUser = auth.currentUser;
+      try {
+        await addDoc(collection(db, "messages"), {
+          ...message,
+          createdAt: Timestamp.now(),
+          createdBy: currentUser.uid,
+          author: name,
+        });
+        Toastify({
+          text: "Ny beskjed er lagt til",
+        }).showToast();
+        location.reload(); // Refresh the page
+      } catch (err) {
+        console.log(err);
+        error = true;
+      }
+    });
   };
 
   // Check if the current user can edit the message based on their uid
@@ -95,7 +113,7 @@
     try {
       await deleteDoc(doc(db, "messages", id));
       Toastify({
-        text: "Message deleted",
+        text: "Beskjeden er slettet",
       }).showToast();
       location.reload(); // Refresh the page
     } catch (err) {
@@ -108,7 +126,7 @@
     try {
       await updateDoc(doc(db, "messages", currentId), message);
       Toastify({
-        text: "Message updated",
+        text: "Beskjeden er oppdatert",
       }).showToast();
       location.reload(); // Refresh the page
     } catch (err) {
@@ -120,7 +138,7 @@
   // Handle submit
   const handleSubmit = () => {
     if (!editStatus) {
-      addMessage();
+      addMessage(message); // pass the message object as an argument
     } else {
       updateMessage();
       editStatus = false;
@@ -129,7 +147,6 @@
     message = {
       title: "",
       description: "",
-      author: "",
     };
     inputElement.focus();
   };
@@ -145,7 +162,6 @@
     message = {
       title: "",
       description: "",
-      author: "",
     };
   };
 </script>
@@ -201,7 +217,7 @@
           id="mainForm"
           class="mainContainerForm"
         >
-          <h2>Legg til en ny beskjed</h2>
+          <h2>{editStatus ? "Endre beskjed" : "Legg til beskjed"}</h2>
           <p>Beskjeden blir liggende ute i 2 uker.</p>
           <div class="titleContainer">
             <label for="title" aria-label="Title" class="titleLabel"
@@ -226,19 +242,6 @@
               bind:value={message.description}
               rows="3"
               placeholder="Skriv din beskjed her"
-              class="form-control"
-            />
-          </div>
-
-          <div class="authorContainer">
-            <label for="author" aria-label="Written by" class="authorLabel"
-              >Skrevet av</label
-            >
-            <input
-              type="text"
-              bind:value={message.author}
-              bind:this={inputElement}
-              placeholder="Skrevet av"
               class="form-control"
             />
           </div>

@@ -219,12 +219,6 @@
                     <p><strong>Sted:</strong> {selectedEvent.place}</p>
                     <p><strong>Arrangør:</strong> {selectedEvent.organizer}</p>
                     <p><strong>Info:</strong>{selectedEvent.info}</p>
-
-                    <div class="detailsButton">
-                      <button on:click={() => (selectedEvent = null)}
-                        >Lukk detaljer</button
-                      >
-                    </div>
                   </div>
                 {/if}
               </div>
@@ -541,23 +535,6 @@
   #details p,
   h3 {
     margin: 5px 0;
-  }
-
-  #details button {
-    background: none;
-    color: #695356;
-    border-radius: 5px;
-    font-family: "Poppins", sans-serif;
-    font-size: 1em;
-    margin: 2px;
-    padding: 5px;
-    text-decoration: underline;
-    width: 8em;
-  }
-
-  .detailsButton {
-    display: flex;
-    justify-content: center;
   }
 
   @media (min-width: 430px) and (max-width: 1200px) {

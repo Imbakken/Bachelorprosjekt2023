@@ -67,7 +67,7 @@
 
       const today = new Date();
       const twoWeeksAgo = new Date();
-      twoWeeksAgo.setDate(today.getDate() - 14); // subtract 1 day
+      twoWeeksAgo.setDate(today.getDate() - 14); // subtract 14 days
 
       const messagesQuery = query(
         collection(db, "messages"),
@@ -256,6 +256,9 @@
 {/if}
 
 <style>
+  h1 {
+    font-size: 1.4em;
+  }
   h2 {
     font-size: 1em;
   }
