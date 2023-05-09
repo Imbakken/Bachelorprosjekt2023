@@ -79,7 +79,7 @@
           author: name,
         });
         Toastify({
-          text: "Ny beskjed er lagt til",
+          text: "Ny beskjed er lagt til.",
         }).showToast();
         location.reload(); // Refresh the page
       } catch (err) {
