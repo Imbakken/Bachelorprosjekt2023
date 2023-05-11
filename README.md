@@ -1,9 +1,10 @@
 # IDG 3920 Bachelorprosjekt
+## Heimat app
 ### Group 13: Hedda Olimb and Ida Marie Joakimsen Bakken  :woman: :woman: 
 ### View the [Project here](https://appheimat.netlify.app/about)
 
 ## :pushpin: About the project
-I en gruppe på to studenter har vi jobbet over to semestre i samarbeid med Gjestvang Eiendom og Vaager Innovasjon med å utvikle en applikasjon for studenter som bor i studentbolig. Målet har vært å lage en applikasjon som gjør at opplevelsen av å bo i en studentbolig blir mer forutsigbart, sosialt og mindre ensomt. Gjennom hele prosessen har vi tatt i bruk innsiktsmetodikk som; intervjuer, spørreundersøkelser, personas og designmetoder som; wireframes, lo-fi og hi-fi prototyper. Det ferdige produktet er en applikasjon som gjør det mulig å lage arrangementer innad i egen studentbolig, se arrangementer i nærheten og nødvendig informasjon fra utleier.
+In a group of two students, we have worked over two semesters in collaboration with Gjestvang Eiendom to develop an application for students who live in student accommodation. The aim has been to create an application that makes the experience of living in a student accommodation more predictable, social and less lonely. Throughout the process, we have used insight methodology such as; interviews, surveys, personas and design methods such as; wireframes, lo-fi and hi-fi prototypes. The finished product is an application that makes it possible to create events inside your own student accommodation, see events nearby and the necessary information from the landlord.
 
 ## :computer: Setup 
 To install the application follow these instructions.
