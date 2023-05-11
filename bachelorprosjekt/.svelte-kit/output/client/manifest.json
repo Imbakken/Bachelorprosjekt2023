@@ -1,0 +1,66 @@
+{
+    "name": "Heimat studentbolig app",
+    "short_name": "Heimat",
+    "description": "Heimat er en app som gjør at du kan holde full oversikt over hva som skjer i boligen din, planlegge hverdagen og bli kjent med andre beboere",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FEFAEF",
+    "theme_color": "#FEFAEF",
+    "icons": [
+      {
+       "src": "/logo/icon-48x48.png",
+       "sizes": "48x48",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-72x72.png",
+       "sizes": "72x72",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-96x96.png",
+       "sizes": "96x96",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-128x128.png",
+       "sizes": "128x128",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-144x144.png",
+       "sizes": "144x144",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-152x152.png",
+       "sizes": "152x152",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-192x192.png",
+       "sizes": "192x192",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-384x384.png",
+       "sizes": "384x384",
+       "type": "image/png",
+       "purpose": "maskable any"
+       },
+       {
+       "src": "/logo/icon-512x512.png",
+       "sizes": "512x512",
+       "type": "image/png",
+       "purpose": "maskable any"
+       }
+   ]
+  }
+  

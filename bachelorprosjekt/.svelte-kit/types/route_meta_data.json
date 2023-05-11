@@ -1,0 +1,45 @@
+{
+	"/": [
+		"src/routes/+layout.server.js",
+		"src/routes/+layout.server.js"
+	],
+	"/about": [
+		"src/routes/+layout.server.js"
+	],
+	"/dashboard": [
+		"src/routes/+layout.server.js"
+	],
+	"/events": [
+		"src/routes/+layout.server.js"
+	],
+	"/information": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/cleaning": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/commonarea": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/internet": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/laundry": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/phone": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/rules": [
+		"src/routes/+layout.server.js"
+	],
+	"/information/waste": [
+		"src/routes/+layout.server.js"
+	],
+	"/messages": [
+		"src/routes/+layout.server.js"
+	],
+	"/nouser": [
+		"src/routes/+layout.server.js"
+	]
+}
